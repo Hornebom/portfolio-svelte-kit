@@ -1,13 +1,21 @@
 <script context="module">
-	import query from './index.query.js'
+	import query from './slug.query.js'
 	import datoRequest from '$lib/dato-request.js'
-
+	
 	export const prerender = true;
 	
-	export async function load({ fetch }) {
+	export async function load({ page, fetch }) {
+    const { slug } = page.params
 		const token = import.meta.env.VITE_DATO_API_TOKEN
-		const { home } = await datoRequest({ query, fetch, token })
-		return { props: { page: home } }
+		const data = await datoRequest({ 
+      query, variables: { slug }, fetch, token 
+    })
+		
+		if(!data.page) {
+			return
+		}
+
+		return { props: { page: data.page } }
 	}
 </script>
 
@@ -16,13 +24,13 @@
 </script>
 
 <svelte:head>
-	{#if page.title}
+	{#if page.title }
 		<title>{page.title}</title>
 	{/if}
 </svelte:head>
 
 <section>
-	{#if page.title}
+	{#if page.title }
 		<h1>
 			{page.title}
 		</h1>
