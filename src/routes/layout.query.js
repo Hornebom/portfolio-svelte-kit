@@ -1,9 +1,10 @@
 const query = `
   query Navigation {
-    allPages {
-      id
-      slug
-      title
+    navigation {
+      links {
+        slug
+        title
+      }
     }
   }
 `

@@ -4,13 +4,13 @@
 
 	export async function load({ page, fetch }) {
 		const token = import.meta.env.VITE_DATO_API_TOKEN
-		const { allPages } = await datoRequest({ query, fetch, token })
+		const { navigation } = await datoRequest({ query, fetch, token })
 		
-		if(!allPages) {
+		if(!navigation) {
 			return
 		}
 
-		return { props: { allPages } }
+		return { props: { navigation } }
 	}
 </script>
 
@@ -19,16 +19,16 @@
 	import Footer from '$lib/footer/Footer.svelte'
 	import '../app.css'
 	
-	export let allPages
+	export let navigation
 </script>
 
-<Header pages={allPages} />
+<Header pages={navigation.links} />
 
 <main>
 	<slot />
 </main>
 
-<Footer pages={allPages} />
+<Footer pages={navigation.links} />
 
 <style>
 </style>
