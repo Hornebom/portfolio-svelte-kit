@@ -16,13 +16,13 @@
 </script>
 
 <svelte:head>
-	{#if page && page.title}
+	{#if page.title}
 		<title>{page.title}</title>
 	{/if}
 </svelte:head>
 
 <section>
-	{#if page && page.title}
+	{#if page.title}
 		<h1>
 			{page.title}
 		</h1>
