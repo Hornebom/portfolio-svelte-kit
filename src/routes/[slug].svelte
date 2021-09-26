@@ -20,12 +20,13 @@
 </script>
 
 <script>
+	import SeoHead from '$lib/seo-head/SeoHead.svelte'
 	export let page
 </script>
 
 <svelte:head>
-	{#if page.title }
-		<title>{page.title}</title>
+	{#if page.seoMeta}
+		<SeoHead seo={page.seoMeta} slug={page.slug} />
 	{/if}
 </svelte:head>
 

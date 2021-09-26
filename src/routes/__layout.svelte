@@ -23,11 +23,9 @@
 </script>
 
 <Header pages={navigation.links} />
-
 <main>
 	<slot />
 </main>
-
 <Footer pages={navigation.links} />
 
 <style>

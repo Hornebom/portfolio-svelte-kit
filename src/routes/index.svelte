@@ -4,20 +4,22 @@
 
 	export const prerender = true;
 	
-	export async function load({ fetch }) {
+	export async function load({ fetch, page }) {
+		const { slug } = page.params
 		const token = import.meta.env.VITE_DATO_API_TOKEN
 		const { home } = await datoRequest({ query, fetch, token })
-		return { props: { page: home } }
+		return { props: { page: { ...home, slug }} }
 	}
 </script>
 
 <script>
+	import SeoHead from '$lib/seo-head/SeoHead.svelte'
 	export let page
 </script>
 
 <svelte:head>
-	{#if page.title}
-		<title>{page.title}</title>
+	{#if page.seoMeta}
+		<SeoHead seo={page.seoMeta} slug={page.slug} />
 	{/if}
 </svelte:head>
 
