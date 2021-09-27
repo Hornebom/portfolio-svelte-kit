@@ -8,32 +8,34 @@
     const { slug } = page.params
 		const token = import.meta.env.VITE_DATO_API_TOKEN
 		const data = await datoRequest({ 
-      query, variables: { slug }, fetch, token 
+			query, variables: { slug }, fetch, token 
     })
 		
 		if(!data.page) {
 			return
 		}
 
-		return { props: { page: data.page } }
+		return { props: { data: data.page } }
 	}
 </script>
 
 <script>
+	import { page } from '$app/stores'
 	import SeoHead from '$lib/seo-head/SeoHead.svelte'
-	export let page
+	export let data
+
+	$: seoProps = {seo: data.seoMeta, slug: $page.params.slug}
 </script>
 
-<svelte:head>
-	{#if page.seoMeta}
-		<SeoHead seo={page.seoMeta} slug={page.slug} />
-	{/if}
-</svelte:head>
+
+{#key $page.path}
+	<SeoHead {...seoProps} />
+{/key}
 
 <section>
-	{#if page.title }
+	{#if data.title }
 		<h1>
-			{page.title}
+			{data.title}
 		</h1>
 	{/if}
 </section>

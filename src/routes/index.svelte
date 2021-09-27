@@ -17,11 +17,7 @@
 	export let page
 </script>
 
-<svelte:head>
-	{#if page.seoMeta}
-		<SeoHead seo={page.seoMeta} slug={page.slug} />
-	{/if}
-</svelte:head>
+<SeoHead seo={page.seoMeta} slug={page.slug} />
 
 <section>
 	{#if page.title}
