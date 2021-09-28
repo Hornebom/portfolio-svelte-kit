@@ -1138,6 +1138,1829 @@ var require_cookie = __commonJS({
   }
 });
 
+// node_modules/datocms-structured-text-utils/dist/cjs/definitions.js
+var require_definitions = __commonJS({
+  "node_modules/datocms-structured-text-utils/dist/cjs/definitions.js"(exports) {
+    init_shims();
+    "use strict";
+    var _a;
+    var _b;
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.allowedMarks = exports.allowedAttributes = exports.inlineNodeTypes = exports.allowedChildren = exports.allowedNodeTypes = exports.thematicBreakNodeType = exports.spanNodeType = exports.rootNodeType = exports.paragraphNodeType = exports.listNodeType = exports.listItemNodeType = exports.linkNodeType = exports.itemLinkNodeType = exports.inlineItemNodeType = exports.headingNodeType = exports.codeNodeType = exports.blockNodeType = exports.blockquoteNodeType = void 0;
+    exports.blockquoteNodeType = "blockquote";
+    exports.blockNodeType = "block";
+    exports.codeNodeType = "code";
+    exports.headingNodeType = "heading";
+    exports.inlineItemNodeType = "inlineItem";
+    exports.itemLinkNodeType = "itemLink";
+    exports.linkNodeType = "link";
+    exports.listItemNodeType = "listItem";
+    exports.listNodeType = "list";
+    exports.paragraphNodeType = "paragraph";
+    exports.rootNodeType = "root";
+    exports.spanNodeType = "span";
+    exports.thematicBreakNodeType = "thematicBreak";
+    exports.allowedNodeTypes = [
+      exports.blockquoteNodeType,
+      exports.blockNodeType,
+      exports.codeNodeType,
+      exports.headingNodeType,
+      exports.inlineItemNodeType,
+      exports.itemLinkNodeType,
+      exports.linkNodeType,
+      exports.listItemNodeType,
+      exports.listNodeType,
+      exports.paragraphNodeType,
+      exports.rootNodeType,
+      exports.spanNodeType,
+      exports.thematicBreakNodeType
+    ];
+    exports.allowedChildren = (_a = {}, _a[exports.blockquoteNodeType] = [exports.paragraphNodeType], _a[exports.blockNodeType] = [], _a[exports.codeNodeType] = [], _a[exports.headingNodeType] = "inlineNodes", _a[exports.inlineItemNodeType] = [], _a[exports.itemLinkNodeType] = "inlineNodes", _a[exports.linkNodeType] = "inlineNodes", _a[exports.listItemNodeType] = [exports.paragraphNodeType, exports.listNodeType], _a[exports.listNodeType] = [exports.listItemNodeType], _a[exports.paragraphNodeType] = "inlineNodes", _a[exports.rootNodeType] = [
+      exports.blockquoteNodeType,
+      exports.codeNodeType,
+      exports.listNodeType,
+      exports.paragraphNodeType,
+      exports.headingNodeType,
+      exports.blockNodeType,
+      exports.thematicBreakNodeType
+    ], _a[exports.spanNodeType] = [], _a[exports.thematicBreakNodeType] = [], _a);
+    exports.inlineNodeTypes = [
+      exports.spanNodeType,
+      exports.linkNodeType,
+      exports.itemLinkNodeType,
+      exports.inlineItemNodeType
+    ];
+    exports.allowedAttributes = (_b = {}, _b[exports.blockquoteNodeType] = ["children", "attribution"], _b[exports.blockNodeType] = ["item"], _b[exports.codeNodeType] = ["language", "highlight", "code"], _b[exports.headingNodeType] = ["level", "children"], _b[exports.inlineItemNodeType] = ["item"], _b[exports.itemLinkNodeType] = ["item", "children", "meta"], _b[exports.linkNodeType] = ["url", "children", "meta"], _b[exports.listItemNodeType] = ["children"], _b[exports.listNodeType] = ["style", "children"], _b[exports.paragraphNodeType] = ["children"], _b[exports.rootNodeType] = ["children"], _b[exports.spanNodeType] = ["value", "marks"], _b[exports.thematicBreakNodeType] = [], _b);
+    exports.allowedMarks = [
+      "strong",
+      "code",
+      "emphasis",
+      "underline",
+      "strikethrough",
+      "highlight"
+    ];
+  }
+});
+
+// node_modules/datocms-structured-text-utils/dist/cjs/guards.js
+var require_guards = __commonJS({
+  "node_modules/datocms-structured-text-utils/dist/cjs/guards.js"(exports) {
+    init_shims();
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isDocument = exports.isStructuredText = exports.isThematicBreak = exports.isInlineItem = exports.isItemLink = exports.isLink = exports.isCode = exports.isBlock = exports.isBlockquote = exports.isListItem = exports.isList = exports.isParagraph = exports.isRoot = exports.isSpan = exports.isHeading = exports.isInlineNode = exports.hasChildren = void 0;
+    var definitions_1 = require_definitions();
+    function hasChildren(node) {
+      return "children" in node;
+    }
+    exports.hasChildren = hasChildren;
+    function isInlineNode(node) {
+      return definitions_1.inlineNodeTypes.includes(node.type);
+    }
+    exports.isInlineNode = isInlineNode;
+    function isHeading2(node) {
+      return node.type === definitions_1.headingNodeType;
+    }
+    exports.isHeading = isHeading2;
+    function isSpan(node) {
+      return node.type === definitions_1.spanNodeType;
+    }
+    exports.isSpan = isSpan;
+    function isRoot(node) {
+      return node.type === definitions_1.rootNodeType;
+    }
+    exports.isRoot = isRoot;
+    function isParagraph(node) {
+      return node.type === definitions_1.paragraphNodeType;
+    }
+    exports.isParagraph = isParagraph;
+    function isList(node) {
+      return node.type === definitions_1.listNodeType;
+    }
+    exports.isList = isList;
+    function isListItem(node) {
+      return node.type === definitions_1.listItemNodeType;
+    }
+    exports.isListItem = isListItem;
+    function isBlockquote(node) {
+      return node.type === definitions_1.blockquoteNodeType;
+    }
+    exports.isBlockquote = isBlockquote;
+    function isBlock(node) {
+      return node.type === definitions_1.blockNodeType;
+    }
+    exports.isBlock = isBlock;
+    function isCode(node) {
+      return node.type === definitions_1.codeNodeType;
+    }
+    exports.isCode = isCode;
+    function isLink(node) {
+      return node.type === definitions_1.linkNodeType;
+    }
+    exports.isLink = isLink;
+    function isItemLink(node) {
+      return node.type === definitions_1.itemLinkNodeType;
+    }
+    exports.isItemLink = isItemLink;
+    function isInlineItem(node) {
+      return node.type === definitions_1.inlineItemNodeType;
+    }
+    exports.isInlineItem = isInlineItem;
+    function isThematicBreak(node) {
+      return node.type === definitions_1.thematicBreakNodeType;
+    }
+    exports.isThematicBreak = isThematicBreak;
+    function isStructuredText(obj) {
+      return obj && "value" in obj && isDocument(obj.value);
+    }
+    exports.isStructuredText = isStructuredText;
+    function isDocument(obj) {
+      return obj && "schema" in obj && "document" in obj;
+    }
+    exports.isDocument = isDocument;
+  }
+});
+
+// node_modules/array-flatten/dist/index.js
+var require_dist = __commonJS({
+  "node_modules/array-flatten/dist/index.js"(exports) {
+    init_shims();
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    function flatten(array) {
+      var result = [];
+      $flatten(array, result);
+      return result;
+    }
+    exports.flatten = flatten;
+    function $flatten(array, result) {
+      for (var i = 0; i < array.length; i++) {
+        var value = array[i];
+        if (Array.isArray(value)) {
+          $flatten(value, result);
+        } else {
+          result.push(value);
+        }
+      }
+    }
+  }
+});
+
+// node_modules/datocms-structured-text-utils/dist/cjs/render.js
+var require_render = __commonJS({
+  "node_modules/datocms-structured-text-utils/dist/cjs/render.js"(exports) {
+    init_shims();
+    "use strict";
+    var __extends = exports && exports.__extends || function() {
+      var extendStatics = function(d2, b) {
+        extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d3, b2) {
+          d3.__proto__ = b2;
+        } || function(d3, b2) {
+          for (var p in b2)
+            if (Object.prototype.hasOwnProperty.call(b2, p))
+              d3[p] = b2[p];
+        };
+        return extendStatics(d2, b);
+      };
+      return function(d2, b) {
+        extendStatics(d2, b);
+        function __() {
+          this.constructor = d2;
+        }
+        d2.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+      };
+    }();
+    var __spreadArrays = exports && exports.__spreadArrays || function() {
+      for (var s2 = 0, i = 0, il = arguments.length; i < il; i++)
+        s2 += arguments[i].length;
+      for (var r = Array(s2), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+          r[k] = a[j];
+      return r;
+    };
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.render = exports.transformNode = exports.renderRule = exports.RenderError = void 0;
+    var guards_1 = require_guards();
+    var array_flatten_1 = require_dist();
+    var RenderError = function(_super) {
+      __extends(RenderError2, _super);
+      function RenderError2(message, node) {
+        var _this = _super.call(this, message) || this;
+        _this.node = node;
+        Object.setPrototypeOf(_this, RenderError2.prototype);
+        return _this;
+      }
+      return RenderError2;
+    }(Error);
+    exports.RenderError = RenderError;
+    var renderRule2 = function(guard, transform) {
+      return {
+        appliable: guard,
+        apply: function(ctx) {
+          return transform(ctx);
+        }
+      };
+    };
+    exports.renderRule = renderRule2;
+    function transformNode(adapter, node, key, ancestors, renderRules) {
+      var children = guards_1.hasChildren(node) ? array_flatten_1.flatten(node.children.map(function(innerNode, index2) {
+        return transformNode(adapter, innerNode, "t-" + index2, __spreadArrays([node], ancestors), renderRules);
+      }).filter(function(x) {
+        return !!x;
+      })) : void 0;
+      var matchingTransform = renderRules.find(function(transform) {
+        return transform.appliable(node);
+      });
+      if (matchingTransform) {
+        return matchingTransform.apply({ adapter, node, children, key, ancestors });
+      } else {
+        throw new RenderError(`Don't know how to render a node with type "` + node.type + '". Please specify a custom renderRule for it!', node);
+      }
+    }
+    exports.transformNode = transformNode;
+    function render2(adapter, structuredTextOrNode, renderRules) {
+      if (!structuredTextOrNode) {
+        return null;
+      }
+      var result = transformNode(adapter, guards_1.isStructuredText(structuredTextOrNode) ? structuredTextOrNode.value.document : guards_1.isDocument(structuredTextOrNode) ? structuredTextOrNode.document : structuredTextOrNode, "t-0", [], renderRules);
+      return result;
+    }
+    exports.render = render2;
+  }
+});
+
+// node_modules/datocms-structured-text-utils/dist/cjs/types.js
+var require_types = __commonJS({
+  "node_modules/datocms-structured-text-utils/dist/cjs/types.js"(exports) {
+    init_shims();
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/datocms-structured-text-utils/dist/cjs/validate.js
+var require_validate = __commonJS({
+  "node_modules/datocms-structured-text-utils/dist/cjs/validate.js"(exports) {
+    init_shims();
+    "use strict";
+    var __rest = exports && exports.__rest || function(s2, e) {
+      var t = {};
+      for (var p in s2)
+        if (Object.prototype.hasOwnProperty.call(s2, p) && e.indexOf(p) < 0)
+          t[p] = s2[p];
+      if (s2 != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s2); i < p.length; i++) {
+          if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s2, p[i]))
+            t[p[i]] = s2[p[i]];
+        }
+      return t;
+    };
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.validate = void 0;
+    var definitions_1 = require_definitions();
+    function validate(document) {
+      if (document === null || document === void 0) {
+        return { valid: true };
+      }
+      if (document.schema !== "dast") {
+        return {
+          valid: false,
+          message: '.schema is not "dast":\n\n ' + JSON.stringify(document, null, 2)
+        };
+      }
+      var nodes = [document.document];
+      var node = document.document;
+      var _loop_1 = function() {
+        var next = nodes.pop();
+        if (!next) {
+          return "break";
+        }
+        node = next;
+        var type = node.type, attributes = __rest(node, ["type"]);
+        var invalidAttribute = Object.keys(attributes).find(function(attr) {
+          return !definitions_1.allowedAttributes[node.type].includes(attr);
+        });
+        if (invalidAttribute) {
+          return { value: {
+            valid: false,
+            message: '"' + node.type + '" has an invalid attribute "' + invalidAttribute + '":\n\n ' + JSON.stringify(node, null, 2)
+          } };
+        }
+        if ("meta" in node) {
+          if (!Array.isArray(node.meta)) {
+            return { value: {
+              valid: false,
+              message: '"' + node.type + `"'s meta is not an Array:
+
+ ` + JSON.stringify(node, null, 2)
+            } };
+          }
+          var invalidMeta = node.meta.find(function(entry) {
+            return typeof entry !== "object" || !("id" in entry) || !("value" in entry) || typeof entry.value !== "string";
+          });
+          if (invalidMeta) {
+            return { value: {
+              valid: false,
+              message: '"' + node.type + '" has an invalid meta ' + JSON.stringify(invalidMeta) + ":\n\n " + JSON.stringify(node, null, 2)
+            } };
+          }
+        }
+        if ("marks" in node) {
+          if (!Array.isArray(node.marks)) {
+            return { value: {
+              valid: false,
+              message: '"' + node.type + `"'s marks is not an Array:
+
+ ` + JSON.stringify(node, null, 2)
+            } };
+          }
+          var invalidMark = node.marks.find(function(mark) {
+            return !definitions_1.allowedMarks.includes(mark);
+          });
+          if (invalidMark) {
+            return { value: {
+              valid: false,
+              message: '"' + node.type + '" has an invalid mark "' + invalidMark + '":\n\n ' + JSON.stringify(node, null, 2)
+            } };
+          }
+        }
+        if ("children" in node) {
+          if (!Array.isArray(node.children)) {
+            return { value: {
+              valid: false,
+              message: '"' + node.type + `"'s children is not an Array:
+
+ ` + JSON.stringify(node, null, 2)
+            } };
+          }
+          if (node.children.length === 0) {
+            return { value: {
+              valid: false,
+              message: '"' + node.type + `"'s children cannot be an empty Array:
+
+ ` + JSON.stringify(node, null, 2)
+            } };
+          }
+          var allowed_1 = definitions_1.allowedChildren[node.type];
+          if (typeof allowed_1 === "string" && allowed_1 === "inlineNodes") {
+            allowed_1 = definitions_1.inlineNodeTypes;
+          }
+          var invalidChildIndex = node.children.findIndex(function(child) {
+            return !child || !allowed_1.includes(child.type);
+          });
+          if (invalidChildIndex !== -1) {
+            var invalidChild = node.children[invalidChildIndex];
+            return { value: {
+              valid: false,
+              message: '"' + node.type + '" has invalid child "' + (invalidChild ? invalidChild.type : invalidChild) + '":\n\n ' + JSON.stringify(node, null, 2)
+            } };
+          }
+          for (var i = node.children.length - 1; i >= 0; i--) {
+            nodes.push(node.children[i]);
+          }
+        }
+      };
+      while (nodes.length > 0) {
+        var state_1 = _loop_1();
+        if (typeof state_1 === "object")
+          return state_1.value;
+        if (state_1 === "break")
+          break;
+      }
+      return {
+        valid: true
+      };
+    }
+    exports.validate = validate;
+  }
+});
+
+// node_modules/datocms-structured-text-utils/dist/cjs/index.js
+var require_cjs = __commonJS({
+  "node_modules/datocms-structured-text-utils/dist/cjs/index.js"(exports) {
+    init_shims();
+    "use strict";
+    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+      if (k2 === void 0)
+        k2 = k;
+      Object.defineProperty(o, k2, { enumerable: true, get: function() {
+        return m[k];
+      } });
+    } : function(o, m, k, k2) {
+      if (k2 === void 0)
+        k2 = k;
+      o[k2] = m[k];
+    });
+    var __exportStar = exports && exports.__exportStar || function(m, exports2) {
+      for (var p in m)
+        if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports2, p))
+          __createBinding(exports2, m, p);
+    };
+    Object.defineProperty(exports, "__esModule", { value: true });
+    __exportStar(require_definitions(), exports);
+    __exportStar(require_guards(), exports);
+    __exportStar(require_render(), exports);
+    __exportStar(require_types(), exports);
+    __exportStar(require_validate(), exports);
+  }
+});
+
+// node_modules/datocms-structured-text-generic-html-renderer/dist/cjs/index.js
+var require_cjs2 = __commonJS({
+  "node_modules/datocms-structured-text-generic-html-renderer/dist/cjs/index.js"(exports) {
+    init_shims();
+    "use strict";
+    var __assign = exports && exports.__assign || function() {
+      __assign = Object.assign || function(t) {
+        for (var s2, i = 1, n = arguments.length; i < n; i++) {
+          s2 = arguments[i];
+          for (var p in s2)
+            if (Object.prototype.hasOwnProperty.call(s2, p))
+              t[p] = s2[p];
+        }
+        return t;
+      };
+      return __assign.apply(this, arguments);
+    };
+    var __spreadArrays = exports && exports.__spreadArrays || function() {
+      for (var s2 = 0, i = 0, il = arguments.length; i < il; i++)
+        s2 += arguments[i].length;
+      for (var r = Array(s2), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+          r[k] = a[j];
+      return r;
+    };
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.render = exports.defaultMetaTransformer = exports.markToTagName = exports.RenderError = exports.renderRule = void 0;
+    var datocms_structured_text_utils_1 = require_cjs();
+    Object.defineProperty(exports, "renderRule", { enumerable: true, get: function() {
+      return datocms_structured_text_utils_1.renderRule;
+    } });
+    Object.defineProperty(exports, "RenderError", { enumerable: true, get: function() {
+      return datocms_structured_text_utils_1.RenderError;
+    } });
+    function markToTagName(mark) {
+      switch (mark) {
+        case "emphasis":
+          return "em";
+        case "underline":
+          return "u";
+        case "strikethrough":
+          return "del";
+        case "highlight":
+          return "mark";
+        default:
+          return mark;
+      }
+    }
+    exports.markToTagName = markToTagName;
+    var defaultMetaTransformer = function(_a) {
+      var meta = _a.meta;
+      var attributes = {};
+      meta.forEach(function(entry) {
+        if (["target", "title", "rel"].includes(entry.id)) {
+          attributes[entry.id] = entry.value;
+        }
+      });
+      return attributes;
+    };
+    exports.defaultMetaTransformer = defaultMetaTransformer;
+    function render2(adapter, structuredTextOrNode, customRules, metaTransformer) {
+      if (metaTransformer === void 0) {
+        metaTransformer = exports.defaultMetaTransformer;
+      }
+      return datocms_structured_text_utils_1.render(adapter, structuredTextOrNode, __spreadArrays(customRules, [
+        datocms_structured_text_utils_1.renderRule(datocms_structured_text_utils_1.isRoot, function(_a) {
+          var renderFragment = _a.adapter.renderFragment, key = _a.key, children = _a.children;
+          return renderFragment(children, key);
+        }),
+        datocms_structured_text_utils_1.renderRule(datocms_structured_text_utils_1.isParagraph, function(_a) {
+          var renderNode = _a.adapter.renderNode, key = _a.key, children = _a.children;
+          return renderNode("p", { key }, children);
+        }),
+        datocms_structured_text_utils_1.renderRule(datocms_structured_text_utils_1.isList, function(_a) {
+          var renderNode = _a.adapter.renderNode, node = _a.node, key = _a.key, children = _a.children;
+          return renderNode(node.style === "bulleted" ? "ul" : "ol", { key }, children);
+        }),
+        datocms_structured_text_utils_1.renderRule(datocms_structured_text_utils_1.isListItem, function(_a) {
+          var renderNode = _a.adapter.renderNode, key = _a.key, children = _a.children;
+          return renderNode("li", { key }, children);
+        }),
+        datocms_structured_text_utils_1.renderRule(datocms_structured_text_utils_1.isBlockquote, function(_a) {
+          var renderNode = _a.adapter.renderNode, key = _a.key, node = _a.node, children = _a.children;
+          var childrenWithAttribution = node.attribution ? __spreadArrays(children || [], [
+            renderNode("footer", { key: "footer" }, node.attribution)
+          ]) : children;
+          return renderNode("blockquote", { key }, childrenWithAttribution);
+        }),
+        datocms_structured_text_utils_1.renderRule(datocms_structured_text_utils_1.isCode, function(_a) {
+          var _b = _a.adapter, renderNode = _b.renderNode, renderText = _b.renderText, key = _a.key, node = _a.node;
+          return renderNode("pre", { key, "data-language": node.language }, renderNode("code", null, renderText(node.code)));
+        }),
+        datocms_structured_text_utils_1.renderRule(datocms_structured_text_utils_1.isLink, function(_a) {
+          var renderNode = _a.adapter.renderNode, key = _a.key, children = _a.children, node = _a.node;
+          var meta = node.meta ? metaTransformer({ node, meta: node.meta }) : {};
+          return renderNode("a", __assign(__assign({}, meta || {}), { key, href: node.url }), children);
+        }),
+        datocms_structured_text_utils_1.renderRule(datocms_structured_text_utils_1.isThematicBreak, function(_a) {
+          var renderNode = _a.adapter.renderNode, key = _a.key;
+          return renderNode("hr", { key });
+        }),
+        datocms_structured_text_utils_1.renderRule(datocms_structured_text_utils_1.isHeading, function(_a) {
+          var node = _a.node, renderNode = _a.adapter.renderNode, children = _a.children, key = _a.key;
+          return renderNode("h" + node.level, { key }, children);
+        }),
+        datocms_structured_text_utils_1.renderRule(datocms_structured_text_utils_1.isSpan, function(_a) {
+          var _b = _a.adapter, renderNode = _b.renderNode, renderText = _b.renderText, key = _a.key, node = _a.node;
+          var marks = node.marks || [];
+          var lines = node.value.split(/\n/);
+          var textWithNewlinesConvertedToBr = lines.length > 0 ? lines.slice(1).reduce(function(acc, line, index2) {
+            return acc.concat([
+              renderNode("br", { key: key + "-br-" + index2 }),
+              renderText(line, key + "-line-" + index2)
+            ]);
+          }, [renderText(lines[0], key + "-line-first")]) : renderText(node.value, key);
+          return marks.reduce(function(children, mark) {
+            return renderNode(markToTagName(mark), { key }, children);
+          }, textWithNewlinesConvertedToBr);
+        })
+      ]));
+    }
+    exports.render = render2;
+  }
+});
+
+// node_modules/browser-split/index.js
+var require_browser_split = __commonJS({
+  "node_modules/browser-split/index.js"(exports, module2) {
+    init_shims();
+    module2.exports = function split(undef) {
+      var nativeSplit = String.prototype.split, compliantExecNpcg = /()??/.exec("")[1] === undef, self;
+      self = function(str, separator, limit) {
+        if (Object.prototype.toString.call(separator) !== "[object RegExp]") {
+          return nativeSplit.call(str, separator, limit);
+        }
+        var output = [], flags = (separator.ignoreCase ? "i" : "") + (separator.multiline ? "m" : "") + (separator.extended ? "x" : "") + (separator.sticky ? "y" : ""), lastLastIndex = 0, separator = new RegExp(separator.source, flags + "g"), separator2, match, lastIndex, lastLength;
+        str += "";
+        if (!compliantExecNpcg) {
+          separator2 = new RegExp("^" + separator.source + "$(?!\\s)", flags);
+        }
+        limit = limit === undef ? -1 >>> 0 : limit >>> 0;
+        while (match = separator.exec(str)) {
+          lastIndex = match.index + match[0].length;
+          if (lastIndex > lastLastIndex) {
+            output.push(str.slice(lastLastIndex, match.index));
+            if (!compliantExecNpcg && match.length > 1) {
+              match[0].replace(separator2, function() {
+                for (var i = 1; i < arguments.length - 2; i++) {
+                  if (arguments[i] === undef) {
+                    match[i] = undef;
+                  }
+                }
+              });
+            }
+            if (match.length > 1 && match.index < str.length) {
+              Array.prototype.push.apply(output, match.slice(1));
+            }
+            lastLength = match[0].length;
+            lastLastIndex = lastIndex;
+            if (output.length >= limit) {
+              break;
+            }
+          }
+          if (separator.lastIndex === match.index) {
+            separator.lastIndex++;
+          }
+        }
+        if (lastLastIndex === str.length) {
+          if (lastLength || !separator.test("")) {
+            output.push("");
+          }
+        } else {
+          output.push(str.slice(lastLastIndex));
+        }
+        return output.length > limit ? output.slice(0, limit) : output;
+      };
+      return self;
+    }();
+  }
+});
+
+// node_modules/indexof/index.js
+var require_indexof = __commonJS({
+  "node_modules/indexof/index.js"(exports, module2) {
+    init_shims();
+    var indexOf = [].indexOf;
+    module2.exports = function(arr, obj) {
+      if (indexOf)
+        return arr.indexOf(obj);
+      for (var i = 0; i < arr.length; ++i) {
+        if (arr[i] === obj)
+          return i;
+      }
+      return -1;
+    };
+  }
+});
+
+// node_modules/class-list/index.js
+var require_class_list = __commonJS({
+  "node_modules/class-list/index.js"(exports, module2) {
+    init_shims();
+    var indexof = require_indexof();
+    module2.exports = ClassList;
+    function ClassList(elem) {
+      var cl = elem.classList;
+      if (cl) {
+        return cl;
+      }
+      var classList = {
+        add,
+        remove,
+        contains,
+        toggle,
+        toString: $toString,
+        length: 0,
+        item
+      };
+      return classList;
+      function add(token) {
+        var list = getTokens();
+        if (indexof(list, token) > -1) {
+          return;
+        }
+        list.push(token);
+        setTokens(list);
+      }
+      function remove(token) {
+        var list = getTokens(), index2 = indexof(list, token);
+        if (index2 === -1) {
+          return;
+        }
+        list.splice(index2, 1);
+        setTokens(list);
+      }
+      function contains(token) {
+        return indexof(getTokens(), token) > -1;
+      }
+      function toggle(token) {
+        if (contains(token)) {
+          remove(token);
+          return false;
+        } else {
+          add(token);
+          return true;
+        }
+      }
+      function $toString() {
+        return elem.className;
+      }
+      function item(index2) {
+        var tokens = getTokens();
+        return tokens[index2] || null;
+      }
+      function getTokens() {
+        var className = elem.className;
+        return filter(className.split(" "), isTruthy);
+      }
+      function setTokens(list) {
+        var length = list.length;
+        elem.className = list.join(" ");
+        classList.length = length;
+        for (var i = 0; i < list.length; i++) {
+          classList[i] = list[i];
+        }
+        delete list[length];
+      }
+    }
+    function filter(arr, fn) {
+      var ret = [];
+      for (var i = 0; i < arr.length; i++) {
+        if (fn(arr[i]))
+          ret.push(arr[i]);
+      }
+      return ret;
+    }
+    function isTruthy(value) {
+      return !!value;
+    }
+  }
+});
+
+// node_modules/html-element/html-attributes.js
+var require_html_attributes = __commonJS({
+  "node_modules/html-element/html-attributes.js"(exports, module2) {
+    init_shims();
+    var PROPS_TO_ATTRS = {
+      "className": "class",
+      "htmlFor": "for"
+    };
+    var HTML_ATTRIBUTES = {
+      "accept": new Set([
+        "form",
+        "input"
+      ]),
+      "accept-charset": new Set([
+        "form"
+      ]),
+      "accesskey": "GLOBAL",
+      "action": new Set([
+        "form"
+      ]),
+      "align": new Set([
+        "applet",
+        "caption",
+        "col",
+        "colgroup",
+        "hr",
+        "iframe",
+        "img",
+        "table",
+        "tbody",
+        "td",
+        "tfoot",
+        "th",
+        "thead",
+        "tr"
+      ]),
+      "alt": new Set([
+        "applet",
+        "area",
+        "img",
+        "input"
+      ]),
+      "async": new Set([
+        "script"
+      ]),
+      "autocomplete": new Set([
+        "form",
+        "input"
+      ]),
+      "autofocus": new Set([
+        "button",
+        "input",
+        "keygen",
+        "select",
+        "textarea"
+      ]),
+      "autoplay": new Set([
+        "audio",
+        "video"
+      ]),
+      "autosave": new Set([
+        "input"
+      ]),
+      "bgcolor": new Set([
+        "body",
+        "col",
+        "colgroup",
+        "marquee",
+        "table",
+        "tbody",
+        "tfoot",
+        "td",
+        "th",
+        "tr"
+      ]),
+      "border": new Set([
+        "img",
+        "object",
+        "table"
+      ]),
+      "buffered": new Set([
+        "audio",
+        "video"
+      ]),
+      "challenge": new Set([
+        "keygen"
+      ]),
+      "charset": new Set([
+        "meta",
+        "script"
+      ]),
+      "checked": new Set([
+        "command",
+        "input"
+      ]),
+      "cite": new Set([
+        "blockquote",
+        "del",
+        "ins",
+        "q"
+      ]),
+      "class": "GLOBAL",
+      "code": new Set([
+        "applet"
+      ]),
+      "codebase": new Set([
+        "applet"
+      ]),
+      "color": new Set([
+        "basefont",
+        "font",
+        "hr"
+      ]),
+      "cols": new Set([
+        "textarea"
+      ]),
+      "colspan": new Set([
+        "td",
+        "th"
+      ]),
+      "content": new Set([
+        "meta"
+      ]),
+      "contenteditable": "GLOBAL",
+      "contextmenu": "GLOBAL",
+      "controls": new Set([
+        "audio",
+        "video"
+      ]),
+      "coords": new Set([
+        "area"
+      ]),
+      "data": new Set([
+        "object"
+      ]),
+      "datetime": new Set([
+        "del",
+        "ins",
+        "time"
+      ]),
+      "default": new Set([
+        "track"
+      ]),
+      "defer": new Set([
+        "script"
+      ]),
+      "dir": "GLOBAL",
+      "dirname": new Set([
+        "input",
+        "textarea"
+      ]),
+      "disabled": new Set([
+        "button",
+        "command",
+        "fieldset",
+        "input",
+        "keygen",
+        "optgroup",
+        "option",
+        "select",
+        "textarea"
+      ]),
+      "download": new Set([
+        "a",
+        "area"
+      ]),
+      "draggable": "GLOBAL",
+      "dropzone": "GLOBAL",
+      "enctype": new Set([
+        "form"
+      ]),
+      "for": new Set([
+        "label",
+        "output"
+      ]),
+      "form": new Set([
+        "button",
+        "fieldset",
+        "input",
+        "keygen",
+        "label",
+        "meter",
+        "object",
+        "output",
+        "progress",
+        "select",
+        "textarea"
+      ]),
+      "formaction": new Set([
+        "input",
+        "button"
+      ]),
+      "headers": new Set([
+        "td",
+        "th"
+      ]),
+      "height": new Set([
+        "canvas",
+        "embed",
+        "iframe",
+        "img",
+        "input",
+        "object",
+        "video"
+      ]),
+      "hidden": "GLOBAL",
+      "high": new Set([
+        "meter"
+      ]),
+      "href": new Set([
+        "a",
+        "area",
+        "base",
+        "link"
+      ]),
+      "hreflang": new Set([
+        "a",
+        "area",
+        "link"
+      ]),
+      "http-equiv": new Set([
+        "meta"
+      ]),
+      "icon": new Set([
+        "command"
+      ]),
+      "id": "GLOBAL",
+      "ismap": new Set([
+        "img"
+      ]),
+      "itemprop": "GLOBAL",
+      "keytype": new Set([
+        "keygen"
+      ]),
+      "kind": new Set([
+        "track"
+      ]),
+      "label": new Set([
+        "track"
+      ]),
+      "lang": "GLOBAL",
+      "language": new Set([
+        "script"
+      ]),
+      "list": new Set([
+        "input"
+      ]),
+      "loop": new Set([
+        "audio",
+        "bgsound",
+        "marquee",
+        "video"
+      ]),
+      "low": new Set([
+        "meter"
+      ]),
+      "manifest": new Set([
+        "html"
+      ]),
+      "max": new Set([
+        "input",
+        "meter",
+        "progress"
+      ]),
+      "maxlength": new Set([
+        "input",
+        "textarea"
+      ]),
+      "maxlength": new Set([
+        "input",
+        "textarea"
+      ]),
+      "media": new Set([
+        "a",
+        "area",
+        "link",
+        "source",
+        "style"
+      ]),
+      "method": new Set([
+        "form"
+      ]),
+      "min": new Set([
+        "input",
+        "meter"
+      ]),
+      "multiple": new Set([
+        "input",
+        "select"
+      ]),
+      "muted": new Set([
+        "video"
+      ]),
+      "name": new Set([
+        "button",
+        "form",
+        "fieldset",
+        "iframe",
+        "input",
+        "keygen",
+        "object",
+        "output",
+        "select",
+        "textarea",
+        "map",
+        "meta",
+        "param"
+      ]),
+      "novalidate": new Set([
+        "form"
+      ]),
+      "open": new Set([
+        "details"
+      ]),
+      "optimum": new Set([
+        "meter"
+      ]),
+      "pattern": new Set([
+        "input"
+      ]),
+      "ping": new Set([
+        "a",
+        "area"
+      ]),
+      "placeholder": new Set([
+        "input",
+        "textarea"
+      ]),
+      "poster": new Set([
+        "video"
+      ]),
+      "preload": new Set([
+        "audio",
+        "video"
+      ]),
+      "radiogroup": new Set([
+        "command"
+      ]),
+      "readonly": new Set([
+        "input",
+        "textarea"
+      ]),
+      "rel": new Set([
+        "a",
+        "area",
+        "link"
+      ]),
+      "required": new Set([
+        "input",
+        "select",
+        "textarea"
+      ]),
+      "reversed": new Set([
+        "ol"
+      ]),
+      "rows": new Set([
+        "textarea"
+      ]),
+      "rowspan": new Set([
+        "td",
+        "th"
+      ]),
+      "sandbox": new Set([
+        "iframe"
+      ]),
+      "scope": new Set([
+        "th"
+      ]),
+      "scoped": new Set([
+        "style"
+      ]),
+      "seamless": new Set([
+        "iframe"
+      ]),
+      "selected": new Set([
+        "option"
+      ]),
+      "shape": new Set([
+        "a",
+        "area"
+      ]),
+      "size": new Set([
+        "input",
+        "select"
+      ]),
+      "sizes": new Set([
+        "img",
+        "link",
+        "source"
+      ]),
+      "span": new Set([
+        "col",
+        "colgroup"
+      ]),
+      "spellcheck": "GLOBAL",
+      "src": new Set([
+        "audio",
+        "embed",
+        "iframe",
+        "img",
+        "input",
+        "script",
+        "source",
+        "track",
+        "video"
+      ]),
+      "srcdoc": new Set([
+        "iframe"
+      ]),
+      "srclang": new Set([
+        "track"
+      ]),
+      "srcset": new Set([
+        "img"
+      ]),
+      "start": new Set([
+        "ol"
+      ]),
+      "step": new Set([
+        "input"
+      ]),
+      "style": "GLOBAL",
+      "summary": new Set([
+        "table"
+      ]),
+      "tabindex": "GLOBAL",
+      "target": new Set([
+        "a",
+        "area",
+        "base",
+        "form"
+      ]),
+      "title": "GLOBAL",
+      "type": new Set([
+        "button",
+        "input",
+        "command",
+        "embed",
+        "object",
+        "script",
+        "source",
+        "style",
+        "menu"
+      ]),
+      "usemap": new Set([
+        "img",
+        "input",
+        "object"
+      ]),
+      "value": new Set([
+        "button",
+        "option",
+        "input",
+        "li",
+        "meter",
+        "progress",
+        "param"
+      ]),
+      "width": new Set([
+        "canvas",
+        "embed",
+        "iframe",
+        "img",
+        "input",
+        "object",
+        "video"
+      ]),
+      "wrap": new Set([
+        "textarea"
+      ])
+    };
+    function isStandardAttribute(attrName, tagName) {
+      tagName = tagName.toLowerCase();
+      var attr = HTML_ATTRIBUTES[attrName.toLowerCase()];
+      return !!attr && (attr === "GLOBAL" || attr.has(tagName));
+    }
+    function propToAttr(prop) {
+      return PROPS_TO_ATTRS[prop] || prop;
+    }
+    module2.exports = {
+      isStandardAttribute,
+      propToAttr
+    };
+  }
+});
+
+// node_modules/html-element/index.js
+var require_html_element = __commonJS({
+  "node_modules/html-element/index.js"(exports, module2) {
+    init_shims();
+    var ClassList = require_class_list();
+    var htmlAttributes = require_html_attributes();
+    function Event(type, data) {
+      this.type = type;
+      this.target = null;
+      Object.keys(data || {}).forEach(function(attr) {
+        this[attr] = data[attr];
+      }, this);
+    }
+    Event.prototype.preventDefault = function() {
+    };
+    Event.prototype.stopPropagation = function() {
+    };
+    Event.prototype.stopImmediatePropagation = function() {
+    };
+    function addEventListener(eventType, listener) {
+      this._eventListeners = this._eventListeners || {};
+      this._eventListeners[eventType] = this._eventListeners[eventType] || [];
+      var listeners = this._eventListeners[eventType];
+      if (listeners.indexOf(listener) === -1) {
+        listeners.push(listener);
+      }
+    }
+    function removeEventListener(eventType, listener) {
+      var listeners = this._eventListeners && this._eventListeners[eventType];
+      if (listeners) {
+        var index2 = listeners.indexOf(listener);
+        if (index2 !== -1) {
+          listeners.splice(index2, 1);
+        }
+      }
+    }
+    function dispatchEvent(event) {
+      event.target = this;
+      var listeners = this._eventListeners && this._eventListeners[event.type];
+      if (listeners) {
+        listeners.forEach(function(listener) {
+          listener(event);
+        });
+      }
+      return true;
+    }
+    function Document() {
+    }
+    Document.prototype.createTextNode = function(v) {
+      var n = new Text();
+      n.textContent = v;
+      n.nodeName = "#text";
+      n.nodeType = 3;
+      return n;
+    };
+    Document.prototype.createElement = function(nodeName) {
+      var el = new Element();
+      el.nodeName = el.tagName = nodeName;
+      return el;
+    };
+    Document.prototype.createComment = function(data) {
+      var el = new Comment();
+      el.data = data;
+      return el;
+    };
+    Document.prototype.addEventListener = addEventListener;
+    Document.prototype.removeEventListener = removeEventListener;
+    Document.prototype.dispatchEvent = dispatchEvent;
+    function Node() {
+    }
+    Text.prototype = new Node();
+    Element.prototype = new Node();
+    Comment.prototype = new Node();
+    function Style(el) {
+      this.el = el;
+      this.styles = [];
+    }
+    Style.prototype.setProperty = function(n, v) {
+      this.el._setProperty(this.styles, { name: n, value: v });
+    };
+    Style.prototype.getProperty = function(n) {
+      return this.el._getProperty(this.styles, n);
+    };
+    Style.prototype.__defineGetter__("cssText", function() {
+      var stylified = "";
+      this.styles.forEach(function(s2) {
+        stylified += s2.name + ":" + s2.value + ";";
+      });
+      return stylified;
+    });
+    Style.prototype.__defineSetter__("cssText", function(v) {
+      this.styles.length = 0;
+      v.split(";").forEach(function(part) {
+        var splitPoint = part.indexOf(":");
+        if (splitPoint) {
+          var key = part.slice(0, splitPoint).trim();
+          var value = part.slice(splitPoint + 1).trim();
+          this.setProperty(key, value);
+        }
+      }, this);
+    });
+    function Attribute(name, value) {
+      if (name) {
+        this.name = name;
+        this.value = value ? value : "";
+      }
+    }
+    function Element() {
+      var self = this;
+      this.style = new Style(this);
+      this.classList = ClassList(this);
+      this.childNodes = [];
+      this.attributes = [];
+      this.dataset = {};
+      this.className = "";
+      this._setProperty = function(arr, obj, key, val) {
+        var p = self._getProperty(arr, key);
+        if (p) {
+          p.value = String(val);
+          return;
+        }
+        arr.push(typeof obj === "function" ? new obj(key.toLowerCase(), String(val)) : obj);
+      };
+      this._getProperty = function(arr, key) {
+        if (!key)
+          return;
+        key = key.toLowerCase();
+        for (var i = 0; i < arr.length; i++) {
+          if (key === arr[i].name)
+            return arr[i];
+        }
+      };
+    }
+    Element.prototype.nodeType = 1;
+    Element.prototype.appendChild = function(child) {
+      child.parentElement = this;
+      this.childNodes.push(child);
+      return child;
+    };
+    Element.prototype.setAttribute = function(n, v) {
+      if (n === "style") {
+        this.style.cssText = v;
+      } else {
+        this._setProperty(this.attributes, Attribute, n, v);
+      }
+    };
+    Element.prototype.getAttribute = function(n) {
+      if (n === "style") {
+        return this.style.cssText;
+      } else {
+        var result = this._getProperty(this.attributes, n);
+        return typeof result !== "undefined" ? result.value : null;
+      }
+    };
+    Element.prototype.removeAttribute = function(n) {
+      if (n === "class") {
+        delete this.className;
+      } else {
+        for (var i = 0, len = this.attributes.length; i < len; i++) {
+          if (this.attributes[i].name === n) {
+            this.attributes.splice(i, 1);
+            break;
+          }
+        }
+      }
+    };
+    Element.prototype.replaceChild = function(newChild, oldChild) {
+      var self = this;
+      var replaced = false;
+      this.childNodes.forEach(function(child, index2) {
+        if (child === oldChild) {
+          self.childNodes[index2] = newChild;
+          newChild.parentElement = this;
+          replaced = true;
+        }
+      });
+      if (replaced)
+        return oldChild;
+    };
+    Element.prototype.removeChild = function(rChild) {
+      var self = this;
+      var removed = true;
+      this.childNodes.forEach(function(child, index2) {
+        if (child === rChild) {
+          self.childNodes.splice(index2, 1);
+          rChild.parentElement = null;
+          removed = true;
+        }
+      });
+      if (removed)
+        return rChild;
+    };
+    Element.prototype.insertBefore = function(newChild, existingChild) {
+      var childNodes = this.childNodes;
+      if (existingChild === null) {
+        childNodes.push(newChild);
+      } else {
+        for (var i = 0, len = childNodes.length; i < len; i++) {
+          var child = childNodes[i];
+          if (child === existingChild) {
+            i === 0 ? childNodes.unshift(newChild) : childNodes.splice(i, 0, newChild);
+            break;
+          }
+        }
+      }
+      newChild.parentElement = this;
+      return newChild;
+    };
+    Element.prototype.addEventListener = addEventListener;
+    Element.prototype.removeEventListener = removeEventListener;
+    Element.prototype.dispatchEvent = dispatchEvent;
+    Element.prototype.insertAdjacentHTML = function(position, text) {
+    };
+    Element.prototype.__defineGetter__("innerHTML", function() {
+      var s2 = this.childNodes.html || "";
+      this.childNodes.forEach(function(e) {
+        s2 += e.outerHTML || e.textContent;
+      });
+      return s2;
+    });
+    Element.prototype.__defineSetter__("innerHTML", function(v) {
+      this.childNodes.length = 0;
+      this.childNodes.html = v;
+    });
+    Element.prototype.__defineGetter__("outerHTML", function() {
+      var a = [], self = this;
+      var VOID_ELEMENTS = {
+        AREA: true,
+        BASE: true,
+        BR: true,
+        COL: true,
+        EMBED: true,
+        HR: true,
+        IMG: true,
+        INPUT: true,
+        KEYGEN: true,
+        LINK: true,
+        META: true,
+        PARAM: true,
+        SOURCE: true,
+        TRACK: true,
+        WBR: true
+      };
+      function _stringify(arr) {
+        var attr = [], value;
+        arr.forEach(function(a2) {
+          value = a2.name != "style" ? a2.value : self.style.cssText;
+          attr.push(a2.name + '="' + escapeAttribute(value) + '"');
+        });
+        return attr.length ? " " + attr.join(" ") : "";
+      }
+      function _dataify(data) {
+        var attr = [], value;
+        Object.keys(data).forEach(function(name) {
+          attr.push("data-" + name + '="' + escapeAttribute(data[name]) + '"');
+        });
+        return attr.length ? " " + attr.join(" ") : "";
+      }
+      function _propertify() {
+        var props = [];
+        for (var key in self) {
+          var attrName = htmlAttributes.propToAttr(key);
+          if (self.hasOwnProperty(key) && ["string", "boolean", "number"].indexOf(typeof self[key]) !== -1 && htmlAttributes.isStandardAttribute(attrName, self.nodeName) && _shouldOutputProp(key, attrName)) {
+            props.push({ name: attrName, value: self[key] });
+          }
+        }
+        return props ? _stringify(props) : "";
+      }
+      function _shouldOutputProp(prop, attr) {
+        if (self.getAttribute(attr)) {
+          return false;
+        } else {
+          if (prop === "className" && !self[prop]) {
+            return false;
+          }
+        }
+        return true;
+      }
+      var attrs = this.style.cssText ? this.attributes.concat([{ name: "style" }]) : this.attributes;
+      a.push("<" + this.nodeName + _propertify() + _stringify(attrs) + _dataify(this.dataset) + ">");
+      if (!VOID_ELEMENTS[this.nodeName.toUpperCase()]) {
+        a.push(this.innerHTML);
+        a.push("</" + this.nodeName + ">");
+      }
+      return a.join("");
+    });
+    Element.prototype.__defineGetter__("textContent", function() {
+      var s2 = "";
+      this.childNodes.forEach(function(e) {
+        s2 += e.textContent;
+      });
+      return s2;
+    });
+    Element.prototype.__defineSetter__("textContent", function(v) {
+      var textNode = new Text();
+      textNode.textContent = v;
+      this.childNodes = [textNode];
+      return v;
+    });
+    function escapeHTML(s2) {
+      return String(s2).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+    function escapeAttribute(s2) {
+      return escapeHTML(s2).replace(/"/g, "&quot;");
+    }
+    Element.prototype.nodeValue = null;
+    function Text() {
+    }
+    Text.prototype.nodeType = 3;
+    Text.prototype.nodeName = "#text";
+    Text.prototype.__defineGetter__("textContent", function() {
+      return escapeHTML(this.value || "");
+    });
+    Text.prototype.__defineSetter__("textContent", function(v) {
+      this.value = v;
+    });
+    Text.prototype.__defineGetter__("nodeValue", function() {
+      return escapeHTML(this.value || "");
+    });
+    Text.prototype.__defineSetter__("nodeValue", function(v) {
+      this.value = v;
+    });
+    Text.prototype.__defineGetter__("length", function() {
+      return (this.value || "").length;
+    });
+    Text.prototype.replaceData = function(offset, length, str) {
+      this.value = this.value.slice(0, offset) + str + this.value.slice(offset + length);
+    };
+    function Comment() {
+    }
+    Comment.prototype.nodeType = 8;
+    Comment.prototype.nodeName = "#comment";
+    Comment.prototype.__defineGetter__("data", function() {
+      return this.value;
+    });
+    Comment.prototype.__defineSetter__("data", function(v) {
+      this.value = v;
+    });
+    Comment.prototype.__defineGetter__("outerHTML", function() {
+      return "<!--" + escapeHTML(this.value || "") + "-->";
+    });
+    Comment.prototype.__defineGetter__("nodeValue", function() {
+      return escapeHTML(this.value || "");
+    });
+    Comment.prototype.__defineSetter__("nodeValue", function(v) {
+      this.value = v;
+    });
+    function defineParentNode(obj) {
+      obj.__defineGetter__("parentNode", function() {
+        return this.parentElement;
+      });
+    }
+    defineParentNode(Element.prototype);
+    defineParentNode(Comment.prototype);
+    defineParentNode(Text.prototype);
+    defineParentNode(Node.prototype);
+    module2.exports = {
+      Document,
+      Node,
+      Element,
+      Comment,
+      Text,
+      document: new Document(),
+      Event,
+      CustomEvent: Event
+    };
+  }
+});
+
+// node_modules/hyperscript/index.js
+var require_hyperscript = __commonJS({
+  "node_modules/hyperscript/index.js"(exports, module2) {
+    init_shims();
+    var split = require_browser_split();
+    var ClassList = require_class_list();
+    var w = typeof window === "undefined" ? require_html_element() : window;
+    var document = w.document;
+    var Text = w.Text;
+    function context() {
+      var cleanupFuncs = [];
+      function h2() {
+        var args = [].slice.call(arguments), e = null;
+        function item(l) {
+          var r;
+          function parseClass(string) {
+            var m = split(string, /([\.#]?[^\s#.]+)/);
+            if (/^\.|#/.test(m[1]))
+              e = document.createElement("div");
+            forEach(m, function(v2) {
+              var s3 = v2.substring(1, v2.length);
+              if (!v2)
+                return;
+              if (!e)
+                e = document.createElement(v2);
+              else if (v2[0] === ".")
+                ClassList(e).add(s3);
+              else if (v2[0] === "#")
+                e.setAttribute("id", s3);
+            });
+          }
+          if (l == null)
+            ;
+          else if (typeof l === "string") {
+            if (!e)
+              parseClass(l);
+            else
+              e.appendChild(r = document.createTextNode(l));
+          } else if (typeof l === "number" || typeof l === "boolean" || l instanceof Date || l instanceof RegExp) {
+            e.appendChild(r = document.createTextNode(l.toString()));
+          } else if (isArray(l))
+            forEach(l, item);
+          else if (isNode(l))
+            e.appendChild(r = l);
+          else if (l instanceof Text)
+            e.appendChild(r = l);
+          else if (typeof l === "object") {
+            for (var k in l) {
+              if (typeof l[k] === "function") {
+                if (/^on\w+/.test(k)) {
+                  (function(k2, l2) {
+                    if (e.addEventListener) {
+                      e.addEventListener(k2.substring(2), l2[k2], false);
+                      cleanupFuncs.push(function() {
+                        e.removeEventListener(k2.substring(2), l2[k2], false);
+                      });
+                    } else {
+                      e.attachEvent(k2, l2[k2]);
+                      cleanupFuncs.push(function() {
+                        e.detachEvent(k2, l2[k2]);
+                      });
+                    }
+                  })(k, l);
+                } else {
+                  e[k] = l[k]();
+                  cleanupFuncs.push(l[k](function(v2) {
+                    e[k] = v2;
+                  }));
+                }
+              } else if (k === "style") {
+                if (typeof l[k] === "string") {
+                  e.style.cssText = l[k];
+                } else {
+                  for (var s2 in l[k])
+                    (function(s3, v2) {
+                      if (typeof v2 === "function") {
+                        e.style.setProperty(s3, v2());
+                        cleanupFuncs.push(v2(function(val) {
+                          e.style.setProperty(s3, val);
+                        }));
+                      } else
+                        var match = l[k][s3].match(/(.*)\W+!important\W*$/);
+                      if (match) {
+                        e.style.setProperty(s3, match[1], "important");
+                      } else {
+                        e.style.setProperty(s3, l[k][s3]);
+                      }
+                    })(s2, l[k][s2]);
+                }
+              } else if (k === "attrs") {
+                for (var v in l[k]) {
+                  e.setAttribute(v, l[k][v]);
+                }
+              } else if (k.substr(0, 5) === "data-") {
+                e.setAttribute(k, l[k]);
+              } else {
+                e[k] = l[k];
+              }
+            }
+          } else if (typeof l === "function") {
+            var v = l();
+            e.appendChild(r = isNode(v) ? v : document.createTextNode(v));
+            cleanupFuncs.push(l(function(v2) {
+              if (isNode(v2) && r.parentElement)
+                r.parentElement.replaceChild(v2, r), r = v2;
+              else
+                r.textContent = v2;
+            }));
+          }
+          return r;
+        }
+        while (args.length)
+          item(args.shift());
+        return e;
+      }
+      h2.cleanup = function() {
+        for (var i = 0; i < cleanupFuncs.length; i++) {
+          cleanupFuncs[i]();
+        }
+        cleanupFuncs.length = 0;
+      };
+      return h2;
+    }
+    var h = module2.exports = context();
+    h.context = context;
+    function isNode(el) {
+      return el && el.nodeName && el.nodeType;
+    }
+    function forEach(arr, fn) {
+      if (arr.forEach)
+        return arr.forEach(fn);
+      for (var i = 0; i < arr.length; i++)
+        fn(arr[i], i);
+    }
+    function isArray(arr) {
+      return Object.prototype.toString.call(arr) == "[object Array]";
+    }
+  }
+});
+
+// node_modules/datocms-structured-text-to-dom-nodes/dist/cjs/index.js
+var require_cjs3 = __commonJS({
+  "node_modules/datocms-structured-text-to-dom-nodes/dist/cjs/index.js"(exports) {
+    init_shims();
+    "use strict";
+    var __spreadArrays = exports && exports.__spreadArrays || function() {
+      for (var s2 = 0, i = 0, il = arguments.length; i < il; i++)
+        s2 += arguments[i].length;
+      for (var r = Array(s2), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+          r[k] = a[j];
+      return r;
+    };
+    var __importDefault = exports && exports.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.render = exports.defaultAdapter = exports.RenderError = exports.renderRule = void 0;
+    var datocms_structured_text_generic_html_renderer_1 = require_cjs2();
+    Object.defineProperty(exports, "renderRule", { enumerable: true, get: function() {
+      return datocms_structured_text_generic_html_renderer_1.renderRule;
+    } });
+    var datocms_structured_text_utils_1 = require_cjs();
+    Object.defineProperty(exports, "RenderError", { enumerable: true, get: function() {
+      return datocms_structured_text_utils_1.RenderError;
+    } });
+    var hyperscript_1 = __importDefault(require_hyperscript());
+    var hyperscriptAdapter = function(tagName, attrs) {
+      var children = [];
+      for (var _i = 2; _i < arguments.length; _i++) {
+        children[_i - 2] = arguments[_i];
+      }
+      if (attrs) {
+        delete attrs.key;
+      }
+      return hyperscript_1.default.apply(void 0, __spreadArrays([tagName, attrs || void 0], children));
+    };
+    exports.defaultAdapter = {
+      renderNode: hyperscriptAdapter,
+      renderFragment: function(children) {
+        return children;
+      },
+      renderText: function(text) {
+        return text;
+      }
+    };
+    function render2(structuredTextOrNode, settings) {
+      var renderInlineRecord = settings === null || settings === void 0 ? void 0 : settings.renderInlineRecord;
+      var renderLinkToRecord = settings === null || settings === void 0 ? void 0 : settings.renderLinkToRecord;
+      var renderBlock = settings === null || settings === void 0 ? void 0 : settings.renderBlock;
+      var customRules = (settings === null || settings === void 0 ? void 0 : settings.customRules) || [];
+      var result = datocms_structured_text_generic_html_renderer_1.render({
+        renderText: (settings === null || settings === void 0 ? void 0 : settings.renderText) || exports.defaultAdapter.renderText,
+        renderNode: (settings === null || settings === void 0 ? void 0 : settings.renderNode) || exports.defaultAdapter.renderNode,
+        renderFragment: (settings === null || settings === void 0 ? void 0 : settings.renderFragment) || exports.defaultAdapter.renderFragment
+      }, structuredTextOrNode, __spreadArrays(customRules, [
+        datocms_structured_text_generic_html_renderer_1.renderRule(datocms_structured_text_utils_1.isInlineItem, function(_a) {
+          var node = _a.node, adapter = _a.adapter;
+          if (!renderInlineRecord) {
+            throw new datocms_structured_text_utils_1.RenderError("The Structured Text document contains an 'inlineItem' node, but no 'renderInlineRecord' option is specified!", node);
+          }
+          if (!datocms_structured_text_utils_1.isStructuredText(structuredTextOrNode) || !structuredTextOrNode.links) {
+            throw new datocms_structured_text_utils_1.RenderError("The document contains an 'itemLink' node, but the passed value is not a Structured Text GraphQL response, or .links is not present!", node);
+          }
+          var item = structuredTextOrNode.links.find(function(item2) {
+            return item2.id === node.item;
+          });
+          if (!item) {
+            throw new datocms_structured_text_utils_1.RenderError("The Structured Text document contains an 'inlineItem' node, but cannot find a record with ID " + node.item + " inside .links!", node);
+          }
+          return renderInlineRecord({ record: item, adapter });
+        }),
+        datocms_structured_text_generic_html_renderer_1.renderRule(datocms_structured_text_utils_1.isItemLink, function(_a) {
+          var node = _a.node, children = _a.children, adapter = _a.adapter;
+          if (!renderLinkToRecord) {
+            throw new datocms_structured_text_utils_1.RenderError("The Structured Text document contains an 'itemLink' node, but no 'renderLinkToRecord' option is specified!", node);
+          }
+          if (!datocms_structured_text_utils_1.isStructuredText(structuredTextOrNode) || !structuredTextOrNode.links) {
+            throw new datocms_structured_text_utils_1.RenderError("The document contains an 'itemLink' node, but the passed value is not a Structured Text GraphQL response, or .links is not present!", node);
+          }
+          var item = structuredTextOrNode.links.find(function(item2) {
+            return item2.id === node.item;
+          });
+          if (!item) {
+            throw new datocms_structured_text_utils_1.RenderError("The Structured Text document contains an 'itemLink' node, but cannot find a record with ID " + node.item + " inside .links!", node);
+          }
+          return renderLinkToRecord({
+            record: item,
+            adapter,
+            children,
+            transformedMeta: node.meta ? ((settings === null || settings === void 0 ? void 0 : settings.metaTransformer) || datocms_structured_text_generic_html_renderer_1.defaultMetaTransformer)({
+              node,
+              meta: node.meta
+            }) : null
+          });
+        }),
+        datocms_structured_text_generic_html_renderer_1.renderRule(datocms_structured_text_utils_1.isBlock, function(_a) {
+          var node = _a.node, adapter = _a.adapter;
+          if (!renderBlock) {
+            throw new datocms_structured_text_utils_1.RenderError("The Structured Text document contains a 'block' node, but no 'renderBlock' option is specified!", node);
+          }
+          if (!datocms_structured_text_utils_1.isStructuredText(structuredTextOrNode) || !structuredTextOrNode.blocks) {
+            throw new datocms_structured_text_utils_1.RenderError("The document contains an 'block' node, but the passed value is not a Structured Text GraphQL response, or .blocks is not present!", node);
+          }
+          var item = structuredTextOrNode.blocks.find(function(item2) {
+            return item2.id === node.item;
+          });
+          if (!item) {
+            throw new datocms_structured_text_utils_1.RenderError("The Structured Text document contains a 'block' node, but cannot find a record with ID " + node.item + " inside .blocks!", node);
+          }
+          return renderBlock({ record: item, adapter });
+        })
+      ]), settings === null || settings === void 0 ? void 0 : settings.metaTransformer);
+      return result;
+    }
+    exports.render = render2;
+  }
+});
+
 // .svelte-kit/netlify/entry.js
 __export(exports, {
   handler: () => handler
@@ -1179,6 +3002,8 @@ function v4() {
 }
 
 // .svelte-kit/output/server/app.js
+var import_datocms_structured_text_to_dom_nodes = __toModule(require_cjs3());
+var import_datocms_structured_text_utils = __toModule(require_cjs());
 var __require2 = typeof require !== "undefined" ? require : (x) => {
   throw new Error('Dynamic require of "' + x + '" is not supported');
 };
@@ -1224,7 +3049,7 @@ function lowercase_keys(obj) {
   }
   return clone2;
 }
-function error$1(body) {
+function error(body) {
   return {
     status: 500,
     body,
@@ -1253,14 +3078,14 @@ async function render_endpoint(request, route, match) {
     return;
   }
   if (typeof response !== "object") {
-    return error$1(`${preface}: expected an object, got ${typeof response}`);
+    return error(`${preface}: expected an object, got ${typeof response}`);
   }
   let { status = 200, body, headers = {} } = response;
   headers = lowercase_keys(headers);
   const type = get_single_valued_header(headers, "content-type");
   const is_type_textual = is_content_type_textual(type);
   if (!is_type_textual && !(body instanceof Uint8Array || is_string(body))) {
-    return error$1(`${preface}: body must be an instance of string or Uint8Array if content-type is not a supported textual content-type`);
+    return error(`${preface}: body must be an instance of string or Uint8Array if content-type is not a supported textual content-type`);
   }
   let normalized_body;
   if ((typeof body === "object" || typeof body === "undefined") && !(body instanceof Uint8Array) && (!type || type.startsWith("application/json"))) {
@@ -1813,7 +3638,7 @@ async function load_node({
         let response;
         const filename = resolved.replace(options2.paths.assets, "").slice(1);
         const filename_html = `${filename}/index.html`;
-        const asset = options2.manifest.assets.find((d) => d.file === filename || d.file === filename_html);
+        const asset = options2.manifest.assets.find((d2) => d2.file === filename || d2.file === filename_html);
         if (asset) {
           response = options2.read ? new Response(options2.read(asset.file), {
             headers: asset.type ? { "content-type": asset.type } : {}
@@ -2499,6 +4324,13 @@ var escaped = {
 function escape(html) {
   return String(html).replace(/["'&<>]/g, (match) => escaped[match]);
 }
+function each(items, fn) {
+  let str = "";
+  for (let i = 0; i < items.length; i += 1) {
+    str += fn(items[i], i);
+  }
+  return str;
+}
 var missing_component = {
   $$render: () => ""
 };
@@ -2545,9 +4377,17 @@ function create_ssr_component(fn) {
     $$render
   };
 }
+function add_attribute(name, value, boolean) {
+  if (value == null || boolean && !value)
+    return "";
+  return ` ${name}${value === true ? "" : `=${typeof value === "string" ? JSON.stringify(escape(value)) : `"${value}"`}`}`;
+}
+function add_classes(classes) {
+  return classes ? ` class="${classes}"` : "";
+}
 function afterUpdate() {
 }
-var css$2 = {
+var css = {
   code: "#svelte-announcer.svelte-1j55zn5{position:absolute;left:0;top:0;clip:rect(0 0 0 0);clip-path:inset(50%);overflow:hidden;white-space:nowrap;width:1px;height:1px}",
   map: `{"version":3,"file":"root.svelte","sources":["root.svelte"],"sourcesContent":["<!-- This file is generated by @sveltejs/kit \u2014 do not edit it! -->\\n<script>\\n\\timport { setContext, afterUpdate, onMount } from 'svelte';\\n\\n\\t// stores\\n\\texport let stores;\\n\\texport let page;\\n\\n\\texport let components;\\n\\texport let props_0 = null;\\n\\texport let props_1 = null;\\n\\texport let props_2 = null;\\n\\n\\tsetContext('__svelte__', stores);\\n\\n\\t$: stores.page.set(page);\\n\\tafterUpdate(stores.page.notify);\\n\\n\\tlet mounted = false;\\n\\tlet navigated = false;\\n\\tlet title = null;\\n\\n\\tonMount(() => {\\n\\t\\tconst unsubscribe = stores.page.subscribe(() => {\\n\\t\\t\\tif (mounted) {\\n\\t\\t\\t\\tnavigated = true;\\n\\t\\t\\t\\ttitle = document.title || 'untitled page';\\n\\t\\t\\t}\\n\\t\\t});\\n\\n\\t\\tmounted = true;\\n\\t\\treturn unsubscribe;\\n\\t});\\n<\/script>\\n\\n<svelte:component this={components[0]} {...(props_0 || {})}>\\n\\t{#if components[1]}\\n\\t\\t<svelte:component this={components[1]} {...(props_1 || {})}>\\n\\t\\t\\t{#if components[2]}\\n\\t\\t\\t\\t<svelte:component this={components[2]} {...(props_2 || {})}/>\\n\\t\\t\\t{/if}\\n\\t\\t</svelte:component>\\n\\t{/if}\\n</svelte:component>\\n\\n{#if mounted}\\n\\t<div id=\\"svelte-announcer\\" aria-live=\\"assertive\\" aria-atomic=\\"true\\">\\n\\t\\t{#if navigated}\\n\\t\\t\\t{title}\\n\\t\\t{/if}\\n\\t</div>\\n{/if}\\n\\n<style>\\n\\t#svelte-announcer {\\n\\t\\tposition: absolute;\\n\\t\\tleft: 0;\\n\\t\\ttop: 0;\\n\\t\\tclip: rect(0 0 0 0);\\n\\t\\tclip-path: inset(50%);\\n\\t\\toverflow: hidden;\\n\\t\\twhite-space: nowrap;\\n\\t\\twidth: 1px;\\n\\t\\theight: 1px;\\n\\t}\\n</style>"],"names":[],"mappings":"AAsDC,iBAAiB,eAAC,CAAC,AAClB,QAAQ,CAAE,QAAQ,CAClB,IAAI,CAAE,CAAC,CACP,GAAG,CAAE,CAAC,CACN,IAAI,CAAE,KAAK,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CACnB,SAAS,CAAE,MAAM,GAAG,CAAC,CACrB,QAAQ,CAAE,MAAM,CAChB,WAAW,CAAE,MAAM,CACnB,KAAK,CAAE,GAAG,CACV,MAAM,CAAE,GAAG,AACZ,CAAC"}`
 };
@@ -2572,7 +4412,7 @@ var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     $$bindings.props_1(props_1);
   if ($$props.props_2 === void 0 && $$bindings.props_2 && props_2 !== void 0)
     $$bindings.props_2(props_2);
-  $$result.css.add(css$2);
+  $$result.css.add(css);
   {
     stores.page.set(page2);
   }
@@ -2615,7 +4455,7 @@ var user_hooks = /* @__PURE__ */ Object.freeze({
   [Symbol.toStringTag]: "Module",
   handle
 });
-var template = ({ head, body }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="/favicon.png" />\n		<meta name="viewport" content="width=device-width, initial-scale=1" />\n\n		' + head + '\n	</head>\n	<body>\n		<div id="svelte">' + body + "</div>\n	</body>\n</html>\n";
+var template = ({ head, body }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<meta name="viewport" content="width=device-width, initial-scale=1" />\n\n		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\n		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">\n		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">\n		<link rel="manifest" href="/site.webmanifest">\n		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#142ef2">\n		<meta name="msapplication-TileColor" content="#da532c">\n		<meta name="theme-color" content="#142ef2">\n\n		<link rel="preload" href="/fonts/geomanist-bold-webfont.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />\n		<link rel="preload" href="/fonts/geomanist-regular-webfont.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />\n\n		' + head + '\n	</head>\n	<body>\n		<div id="svelte">' + body + "</div>\n	</body>\n</html>\n";
 var options = null;
 var default_settings = { paths: { "base": "", "assets": "" } };
 function init(settings = default_settings) {
@@ -2626,9 +4466,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-cf98f39c.js",
+      file: assets + "/_app/start-8ff15195.js",
       css: [assets + "/_app/assets/start-61d1577b.css"],
-      js: [assets + "/_app/start-cf98f39c.js", assets + "/_app/chunks/vendor-a1b22787.js"]
+      js: [assets + "/_app/start-8ff15195.js", assets + "/_app/chunks/vendor-29f32bcf.js"]
     },
     fetched: void 0,
     floc: false,
@@ -2655,47 +4495,50 @@ function init(settings = default_settings) {
     trailing_slash: "never"
   };
 }
+var d = (s2) => s2.replace(/%23/g, "#").replace(/%3[Bb]/g, ";").replace(/%2[Cc]/g, ",").replace(/%2[Ff]/g, "/").replace(/%3[Ff]/g, "?").replace(/%3[Aa]/g, ":").replace(/%40/g, "@").replace(/%26/g, "&").replace(/%3[Dd]/g, "=").replace(/%2[Bb]/g, "+").replace(/%24/g, "$");
 var empty = () => ({});
 var manifest = {
-  assets: [{ "file": "favicon.png", "size": 1571, "type": "image/png" }, { "file": "robots.txt", "size": 67, "type": "text/plain" }],
+  assets: [{ "file": ".DS_Store", "size": 6148, "type": null }, { "file": "android-chrome-192x192.png", "size": 13300, "type": "image/png" }, { "file": "android-chrome-512x512.png", "size": 36717, "type": "image/png" }, { "file": "apple-touch-icon.png", "size": 8872, "type": "image/png" }, { "file": "browserconfig.xml", "size": 246, "type": "application/xml" }, { "file": "favicon-16x16.png", "size": 1090, "type": "image/png" }, { "file": "favicon-32x32.png", "size": 1803, "type": "image/png" }, { "file": "favicon.ico", "size": 15086, "type": "image/vnd.microsoft.icon" }, { "file": "fonts/geomanist-bold-webfont.woff", "size": 39652, "type": "font/woff" }, { "file": "fonts/geomanist-bold-webfont.woff2", "size": 27624, "type": "font/woff2" }, { "file": "fonts/geomanist-regular-webfont.woff", "size": 40904, "type": "font/woff" }, { "file": "fonts/geomanist-regular-webfont.woff2", "size": 28184, "type": "font/woff2" }, { "file": "mstile-150x150.png", "size": 9783, "type": "image/png" }, { "file": "robots.txt", "size": 67, "type": "text/plain" }, { "file": "safari-pinned-tab.svg", "size": 4348, "type": "image/svg+xml" }, { "file": "site.webmanifest", "size": 426, "type": "application/manifest+json" }],
   layout: "src/routes/__layout.svelte",
-  error: ".svelte-kit/build/components/error.svelte",
+  error: "src/routes/__error.svelte",
   routes: [
+    {
+      type: "endpoint",
+      pattern: /^\/index\.query$/,
+      params: empty,
+      load: () => Promise.resolve().then(function() {
+        return index_query;
+      })
+    },
     {
       type: "page",
       pattern: /^\/$/,
       params: empty,
       a: ["src/routes/__layout.svelte", "src/routes/index.svelte"],
-      b: [".svelte-kit/build/components/error.svelte"]
-    },
-    {
-      type: "page",
-      pattern: /^\/exploration\/?$/,
-      params: empty,
-      a: ["src/routes/__layout.svelte", "src/routes/exploration.svelte"],
-      b: [".svelte-kit/build/components/error.svelte"]
-    },
-    {
-      type: "page",
-      pattern: /^\/profile\/?$/,
-      params: empty,
-      a: ["src/routes/__layout.svelte", "src/routes/profile.svelte"],
-      b: [".svelte-kit/build/components/error.svelte"]
-    },
-    {
-      type: "page",
-      pattern: /^\/work\/?$/,
-      params: empty,
-      a: ["src/routes/__layout.svelte", "src/routes/work.svelte"],
-      b: [".svelte-kit/build/components/error.svelte"]
+      b: ["src/routes/__error.svelte"]
     },
     {
       type: "endpoint",
-      pattern: /^\/api\/?$/,
+      pattern: /^\/layout\.query$/,
       params: empty,
       load: () => Promise.resolve().then(function() {
-        return index$1;
+        return layout_query;
       })
+    },
+    {
+      type: "endpoint",
+      pattern: /^\/slug\.query$/,
+      params: empty,
+      load: () => Promise.resolve().then(function() {
+        return slug_query;
+      })
+    },
+    {
+      type: "page",
+      pattern: /^\/([^/]+?)\/?$/,
+      params: (m) => ({ slug: d(m[1]) }),
+      a: ["src/routes/__layout.svelte", "src/routes/[slug].svelte"],
+      b: ["src/routes/__error.svelte"]
     }
   ]
 };
@@ -2709,23 +4552,17 @@ var module_lookup = {
   "src/routes/__layout.svelte": () => Promise.resolve().then(function() {
     return __layout;
   }),
-  ".svelte-kit/build/components/error.svelte": () => Promise.resolve().then(function() {
-    return error;
+  "src/routes/__error.svelte": () => Promise.resolve().then(function() {
+    return __error;
   }),
   "src/routes/index.svelte": () => Promise.resolve().then(function() {
     return index;
   }),
-  "src/routes/exploration.svelte": () => Promise.resolve().then(function() {
-    return exploration;
-  }),
-  "src/routes/profile.svelte": () => Promise.resolve().then(function() {
-    return profile;
-  }),
-  "src/routes/work.svelte": () => Promise.resolve().then(function() {
-    return work;
+  "src/routes/[slug].svelte": () => Promise.resolve().then(function() {
+    return _slug_;
   })
 };
-var metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-fba17275.js", "css": ["assets/pages/__layout.svelte-fa68723f.css"], "js": ["pages/__layout.svelte-fba17275.js", "chunks/vendor-a1b22787.js"], "styles": [] }, ".svelte-kit/build/components/error.svelte": { "entry": "error.svelte-feada60a.js", "css": [], "js": ["error.svelte-feada60a.js", "chunks/vendor-a1b22787.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-45fc405a.js", "css": [], "js": ["pages/index.svelte-45fc405a.js", "chunks/vendor-a1b22787.js"], "styles": [] }, "src/routes/exploration.svelte": { "entry": "pages/exploration.svelte-5be247c4.js", "css": [], "js": ["pages/exploration.svelte-5be247c4.js", "chunks/vendor-a1b22787.js", "chunks/env-a13806e5.js"], "styles": [] }, "src/routes/profile.svelte": { "entry": "pages/profile.svelte-2c51ba67.js", "css": [], "js": ["pages/profile.svelte-2c51ba67.js", "chunks/vendor-a1b22787.js", "chunks/env-a13806e5.js"], "styles": [] }, "src/routes/work.svelte": { "entry": "pages/work.svelte-f283d312.js", "css": [], "js": ["pages/work.svelte-f283d312.js", "chunks/vendor-a1b22787.js", "chunks/env-a13806e5.js"], "styles": [] } };
+var metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-6b83cb84.js", "css": ["assets/pages/__layout.svelte-3a2b9985.css"], "js": ["pages/__layout.svelte-6b83cb84.js", "chunks/vendor-29f32bcf.js", "chunks/dato-request-402a6275.js", "chunks/stores-a031842d.js"], "styles": [] }, "src/routes/__error.svelte": { "entry": "pages/__error.svelte-7cb435ba.js", "css": [], "js": ["pages/__error.svelte-7cb435ba.js", "chunks/vendor-29f32bcf.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-d6930aa4.js", "css": [], "js": ["pages/index.svelte-d6930aa4.js", "chunks/vendor-29f32bcf.js", "chunks/dato-request-402a6275.js", "chunks/SeoHead-ec4761af.js"], "styles": [] }, "src/routes/[slug].svelte": { "entry": "pages/[slug].svelte-ca661112.js", "css": [], "js": ["pages/[slug].svelte-ca661112.js", "chunks/vendor-29f32bcf.js", "chunks/dato-request-402a6275.js", "chunks/SeoHead-ec4761af.js", "chunks/stores-a031842d.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {
@@ -2742,103 +4579,99 @@ function render(request, {
   const host = request.headers["host"];
   return respond({ ...request, host }, options, { prerender: prerender2 });
 }
-function generateUsers() {
-  return [{ foo: "bar" }, { foo: "bar" }];
-}
-async function get() {
-  return {
-    body: generateUsers()
-  };
-}
-var index$1 = /* @__PURE__ */ Object.freeze({
-  __proto__: null,
-  [Symbol.toStringTag]: "Module",
-  get
-});
-var browser = false;
-var dev = false;
-var getStores = () => {
-  const stores = getContext("__svelte__");
-  return {
-    page: {
-      subscribe: stores.page.subscribe
-    },
-    navigating: {
-      subscribe: stores.navigating.subscribe
-    },
-    get preloading() {
-      console.error("stores.preloading is deprecated; use stores.navigating instead");
-      return {
-        subscribe: stores.navigating.subscribe
-      };
-    },
-    session: stores.session
-  };
-};
-var page = {
-  subscribe(fn) {
-    const store = getStores().page;
-    return store.subscribe(fn);
+var seoMeta = `
+  seoMeta {
+    title
+    description
+    twitterCard
+    image {
+      responsiveImage(imgixParams: { w: 1200, h: 630, fit: crop, fm: jpg }) {
+        src
+        width
+        height
+      }
+    }
   }
-};
-var css$1 = {
-  code: "header.svelte-ywed9a{display:flex;justify-content:space-between}nav.svelte-ywed9a{display:flex;justify-content:center}ul.svelte-ywed9a{position:relative;display:flex;justify-content:center;align-items:center;list-style:none}li.svelte-ywed9a{position:relative;height:100%}li.active.svelte-ywed9a{color:red}a.svelte-ywed9a{color:currentColor}a.svelte-ywed9a:hover{color:var(--accent-color)}",
-  map: `{"version":3,"file":"Header.svelte","sources":["Header.svelte"],"sourcesContent":["<script>\\n\\timport { page } from '$app/stores'\\n<\/script>\\n\\n<header>\\n\\t<div class=\\"corner\\">\\n\\t\\t<a sveltekit:prefetch href=\\"/\\">Home</a>\\n\\t</div>\\n\\n\\t<nav>\\n\\t\\t<ul>\\n\\t\\t\\t<li class:active={$page.path === '/profile'}>\\n\\t\\t\\t\\t<a sveltekit:prefetch href=\\"/profile\\">Profile</a>\\n\\t\\t\\t</li>\\n\\t\\t\\t<li class:active={$page.path === '/work'}>\\n\\t\\t\\t\\t<a sveltekit:prefetch href=\\"/work\\">Work</a>\\n\\t\\t\\t</li>\\n\\t\\t\\t<li class:active={$page.path === '/exploration'}>\\n\\t\\t\\t\\t<a sveltekit:prefetch href=\\"/exploration\\">Exploration</a>\\n\\t\\t\\t</li>\\n\\t\\t</ul>\\n\\t</nav>\\n</header>\\n\\n<style>\\n\\theader {\\n\\t\\tdisplay: flex;\\n\\t\\tjustify-content: space-between;\\n\\t}\\n\\n\\tnav {\\n\\t\\tdisplay: flex;\\n\\t\\tjustify-content: center;\\n\\t}\\n\\n\\tul {\\n\\t\\tposition: relative;\\n\\t\\t\\n\\t\\tdisplay: flex;\\n\\t\\tjustify-content: center;\\n\\t\\talign-items: center;\\n\\t\\t\\n\\t\\tlist-style: none;\\n\\t}\\n\\n\\tli {\\n\\t\\tposition: relative;\\n\\t\\theight: 100%;\\n\\t}\\n\\n\\tli.active {\\n\\t\\tcolor: red;\\n\\t}\\n\\n\\ta {\\n\\t\\tcolor: currentColor;\\n\\t}\\n\\n\\ta:hover {\\n\\t\\tcolor: var(--accent-color);\\n\\t}\\n</style>\\n"],"names":[],"mappings":"AAyBC,MAAM,cAAC,CAAC,AACP,OAAO,CAAE,IAAI,CACb,eAAe,CAAE,aAAa,AAC/B,CAAC,AAED,GAAG,cAAC,CAAC,AACJ,OAAO,CAAE,IAAI,CACb,eAAe,CAAE,MAAM,AACxB,CAAC,AAED,EAAE,cAAC,CAAC,AACH,QAAQ,CAAE,QAAQ,CAElB,OAAO,CAAE,IAAI,CACb,eAAe,CAAE,MAAM,CACvB,WAAW,CAAE,MAAM,CAEnB,UAAU,CAAE,IAAI,AACjB,CAAC,AAED,EAAE,cAAC,CAAC,AACH,QAAQ,CAAE,QAAQ,CAClB,MAAM,CAAE,IAAI,AACb,CAAC,AAED,EAAE,OAAO,cAAC,CAAC,AACV,KAAK,CAAE,GAAG,AACX,CAAC,AAED,CAAC,cAAC,CAAC,AACF,KAAK,CAAE,YAAY,AACpB,CAAC,AAED,eAAC,MAAM,AAAC,CAAC,AACR,KAAK,CAAE,IAAI,cAAc,CAAC,AAC3B,CAAC"}`
-};
-var Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let $page, $$unsubscribe_page;
-  $$unsubscribe_page = subscribe(page, (value) => $page = value);
-  $$result.css.add(css$1);
-  $$unsubscribe_page();
-  return `<header class="${"svelte-ywed9a"}"><div class="${"corner"}"><a sveltekit:prefetch href="${"/"}" class="${"svelte-ywed9a"}">Home</a></div>
-
-	<nav class="${"svelte-ywed9a"}"><ul class="${"svelte-ywed9a"}"><li class="${["svelte-ywed9a", $page.path === "/profile" ? "active" : ""].join(" ").trim()}"><a sveltekit:prefetch href="${"/profile"}" class="${"svelte-ywed9a"}">Profile</a></li>
-			<li class="${["svelte-ywed9a", $page.path === "/work" ? "active" : ""].join(" ").trim()}"><a sveltekit:prefetch href="${"/work"}" class="${"svelte-ywed9a"}">Work</a></li>
-			<li class="${["svelte-ywed9a", $page.path === "/exploration" ? "active" : ""].join(" ").trim()}"><a sveltekit:prefetch href="${"/exploration"}" class="${"svelte-ywed9a"}">Exploration</a></li></ul></nav>
-</header>`;
-});
-var css = {
-  code: "main.svelte-1izrdc8.svelte-1izrdc8{flex:1;display:flex;flex-direction:column;padding:1rem;width:100%;max-width:1024px;margin:0 auto;box-sizing:border-box}footer.svelte-1izrdc8.svelte-1izrdc8{display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px}footer.svelte-1izrdc8 a.svelte-1izrdc8{font-weight:bold}@media(min-width: 480px){footer.svelte-1izrdc8.svelte-1izrdc8{padding:40px 0}}",
-  map: `{"version":3,"file":"__layout.svelte","sources":["__layout.svelte"],"sourcesContent":["<script>\\n\\timport Header from '$lib/header/Header.svelte';\\n\\timport '../app.css';\\n<\/script>\\n\\n<Header />\\n\\n<main>\\n\\t<slot />\\n</main>\\n\\n<footer>\\n\\t<p>visit <a href=\\"https://kit.svelte.dev\\">kit.svelte.dev</a> to learn SvelteKit</p>\\n</footer>\\n\\n<style>\\n\\tmain {\\n\\t\\tflex: 1;\\n\\t\\tdisplay: flex;\\n\\t\\tflex-direction: column;\\n\\t\\tpadding: 1rem;\\n\\t\\twidth: 100%;\\n\\t\\tmax-width: 1024px;\\n\\t\\tmargin: 0 auto;\\n\\t\\tbox-sizing: border-box;\\n\\t}\\n\\n\\tfooter {\\n\\t\\tdisplay: flex;\\n\\t\\tflex-direction: column;\\n\\t\\tjustify-content: center;\\n\\t\\talign-items: center;\\n\\t\\tpadding: 40px;\\n\\t}\\n\\n\\tfooter a {\\n\\t\\tfont-weight: bold;\\n\\t}\\n\\n\\t@media (min-width: 480px) {\\n\\t\\tfooter {\\n\\t\\t\\tpadding: 40px 0;\\n\\t\\t}\\n\\t}\\n</style>\\n"],"names":[],"mappings":"AAgBC,IAAI,8BAAC,CAAC,AACL,IAAI,CAAE,CAAC,CACP,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,OAAO,CAAE,IAAI,CACb,KAAK,CAAE,IAAI,CACX,SAAS,CAAE,MAAM,CACjB,MAAM,CAAE,CAAC,CAAC,IAAI,CACd,UAAU,CAAE,UAAU,AACvB,CAAC,AAED,MAAM,8BAAC,CAAC,AACP,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,eAAe,CAAE,MAAM,CACvB,WAAW,CAAE,MAAM,CACnB,OAAO,CAAE,IAAI,AACd,CAAC,AAED,qBAAM,CAAC,CAAC,eAAC,CAAC,AACT,WAAW,CAAE,IAAI,AAClB,CAAC,AAED,MAAM,AAAC,YAAY,KAAK,CAAC,AAAC,CAAC,AAC1B,MAAM,8BAAC,CAAC,AACP,OAAO,CAAE,IAAI,CAAC,CAAC,AAChB,CAAC,AACF,CAAC"}`
-};
-var _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  $$result.css.add(css);
-  return `${validate_component(Header, "Header").$$render($$result, {}, {}, {})}
-
-<main class="${"svelte-1izrdc8"}">${slots.default ? slots.default({}) : ``}</main>
-
-<footer class="${"svelte-1izrdc8"}"><p>visit <a href="${"https://kit.svelte.dev"}" class="${"svelte-1izrdc8"}">kit.svelte.dev</a> to learn SvelteKit</p>
-</footer>`;
-});
-var __layout = /* @__PURE__ */ Object.freeze({
+`;
+var heroMain = `
+  _modelApiKey
+  title
+  text {
+    value
+  }
+`;
+var structuredText = `
+  value
+  links {
+    ... on HomeRecord {
+      id
+      _modelApiKey
+    }
+    ... on PageRecord {
+      id
+      _modelApiKey
+      slug
+    }
+  }
+`;
+var textSection = `
+  _modelApiKey
+  title
+  columnLeft {
+    ${structuredText}
+  }
+  columnRight {
+    ${structuredText}
+  }
+`;
+var query$2 = `
+  query Home {
+    home {
+      title
+      ${seoMeta}
+      sections {
+        ...on HeroMainRecord {
+          ${heroMain}
+        }
+        ...on TextSectionRecord {
+          ${textSection}
+        }
+      }
+    }
+  }
+`;
+var index_query = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   [Symbol.toStringTag]: "Module",
-  "default": _layout
+  "default": query$2
 });
-function load$1({ error: error2, status }) {
-  return { props: { error: error2, status } };
-}
-var Error$1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let { status } = $$props;
-  let { error: error2 } = $$props;
-  if ($$props.status === void 0 && $$bindings.status && status !== void 0)
-    $$bindings.status(status);
-  if ($$props.error === void 0 && $$bindings.error && error2 !== void 0)
-    $$bindings.error(error2);
-  return `<h1>${escape(status)}</h1>
-
-<pre>${escape(error2.message)}</pre>
-
-
-
-${error2.frame ? `<pre>${escape(error2.frame)}</pre>` : ``}
-${error2.stack ? `<pre>${escape(error2.stack)}</pre>` : ``}`;
-});
-var error = /* @__PURE__ */ Object.freeze({
+var query$1 = `
+  query Navigation {
+    navigation {
+      links {
+        slug
+        title
+      }
+    }
+  }
+`;
+var layout_query = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   [Symbol.toStringTag]: "Module",
-  "default": Error$1,
-  load: load$1
+  "default": query$1
+});
+var query = `
+  query Page($slug: String) {
+    page(filter: {slug: {eq: $slug}}) {
+      title
+      ${seoMeta}
+    }
+  }
+`;
+var slug_query = /* @__PURE__ */ Object.freeze({
+  __proto__: null,
+  [Symbol.toStringTag]: "Module",
+  "default": query
 });
 async function datoRequest({ query: query2, variables, fetch: fetch2, token }) {
   const endpoint = "https://graphql.datocms.com/preview";
@@ -2865,89 +4698,222 @@ async function datoRequest({ query: query2, variables, fetch: fetch2, token }) {
   });
   return data;
 }
-var prerender$3 = true;
-var query = `
-		query Home {
-			home {
-				title
-				body
-				aboutTitle
-				aboutBody
-			}
-		}`;
-async function load({ fetch: fetch2 }) {
-  const token = "0d3f86753c98d6e6cf98576be43730";
-  const { home } = await datoRequest({ query, fetch: fetch2, token });
-  return { props: { page: home } };
+var getStores = () => {
+  const stores = getContext("__svelte__");
+  return {
+    page: {
+      subscribe: stores.page.subscribe
+    },
+    navigating: {
+      subscribe: stores.navigating.subscribe
+    },
+    get preloading() {
+      console.error("stores.preloading is deprecated; use stores.navigating instead");
+      return {
+        subscribe: stores.navigating.subscribe
+      };
+    },
+    session: stores.session
+  };
+};
+var page = {
+  subscribe(fn) {
+    const store = getStores().page;
+    return store.subscribe(fn);
+  }
+};
+var Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let $page, $$unsubscribe_page;
+  $$unsubscribe_page = subscribe(page, (value) => $page = value);
+  let { pages } = $$props;
+  if ($$props.pages === void 0 && $$bindings.pages && pages !== void 0)
+    $$bindings.pages(pages);
+  $$unsubscribe_page();
+  return `<header><div><a sveltekit:prefetch href="${"/"}">Home</a></div>
+
+	<nav><ul>${each(pages, ({ slug, title }) => `<li${add_classes([$page.path === `/${slug}` ? "active" : ""].join(" ").trim())}><a sveltekit:prefetch${add_attribute("href", `/${slug}`, 0)}>${escape(title)}</a>
+				</li>`)}</ul></nav>
+</header>`;
+});
+var Footer = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let $page, $$unsubscribe_page;
+  $$unsubscribe_page = subscribe(page, (value) => $page = value);
+  let { pages } = $$props;
+  if ($$props.pages === void 0 && $$bindings.pages && pages !== void 0)
+    $$bindings.pages(pages);
+  $$unsubscribe_page();
+  return `<footer><ul>${each(pages, ({ slug, title }) => `<li${add_classes([$page.path === `/${slug}` ? "active" : ""].join(" ").trim())}><a sveltekit:prefetch${add_attribute("href", `/${slug}`, 0)}>${escape(title)}</a>
+      </li>`)}</ul>
+</footer>`;
+});
+async function load$3({ page: page2, fetch: fetch2 }) {
+  const token = "a54861921a6272e65b9e0c77891669";
+  const { navigation } = await datoRequest({ query: query$1, fetch: fetch2, token });
+  if (!navigation) {
+    return;
+  }
+  return { props: { navigation } };
+}
+var _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { navigation } = $$props;
+  if ($$props.navigation === void 0 && $$bindings.navigation && navigation !== void 0)
+    $$bindings.navigation(navigation);
+  return `${validate_component(Header, "Header").$$render($$result, { pages: navigation.links }, {}, {})}
+<main>${slots.default ? slots.default({}) : ``}</main>
+${validate_component(Footer, "Footer").$$render($$result, { pages: navigation.links }, {}, {})}`;
+});
+var __layout = /* @__PURE__ */ Object.freeze({
+  __proto__: null,
+  [Symbol.toStringTag]: "Module",
+  "default": _layout,
+  load: load$3
+});
+function load$2({ error: error2, status }) {
+  return { props: { props: { error: error2, status } } };
+}
+var _error = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { error: error2 } = $$props;
+  let { status } = $$props;
+  if ($$props.error === void 0 && $$bindings.error && error2 !== void 0)
+    $$bindings.error(error2);
+  if ($$props.status === void 0 && $$bindings.status && status !== void 0)
+    $$bindings.status(status);
+  return `${$$result.head += `${$$result.title = `<title>${escape(status)}</title>`, ""}`, ""}
+
+<h1>${escape(status)}
+	${error2 ? `: ${escape(error2.message)}` : ``}</h1>
+<a sveltekit:prefetch href="${"/"}">Home</a>`;
+});
+var __error = /* @__PURE__ */ Object.freeze({
+  __proto__: null,
+  [Symbol.toStringTag]: "Module",
+  "default": _error,
+  load: load$2
+});
+var SeoHead = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { seo = {} } = $$props;
+  let { slug = "" } = $$props;
+  const title = seo.title || "Hornebom";
+  const description = seo.description || "Portfolio of Hornebom, frontend and creative developer, based in Rotterdam, The Netherlands.";
+  if ($$props.seo === void 0 && $$bindings.seo && seo !== void 0)
+    $$bindings.seo(seo);
+  if ($$props.slug === void 0 && $$bindings.slug && slug !== void 0)
+    $$bindings.slug(slug);
+  return `${$$result.head += `${$$result.title = `<title>${escape(title)}</title>`, ""}<meta key="${"og:title"}" property="${"og:title"}" name="${"twitter:title"}"${add_attribute("content", title, 0)} data-svelte="svelte-ajtuxi"><meta key="${"og:type"}" property="${"og:type"}" content="${"website"}" data-svelte="svelte-ajtuxi"><meta key="${"description"}" name="${"description"}"${add_attribute("content", description, 0)} data-svelte="svelte-ajtuxi"><meta key="${"og:description"}" property="${"og:description"}" name="${"twitter:description"}"${add_attribute("content", description, 0)} data-svelte="svelte-ajtuxi">${seo && seo.image && seo.image.responsiveImage ? `<meta key="${"og:image"}" property="${"og:image"}"${add_attribute("content", `${seo.image.responsiveImage.src}?auto=format&fm=jpg&auto=quality`, 0)} data-svelte="svelte-ajtuxi">
+    
+    <meta key="${"og:image:width"}" property="${"og:image:width"}"${add_attribute("content", `${seo.image.responsiveImage.width}`, 0)} data-svelte="svelte-ajtuxi">
+    
+    <meta key="${"og:image:height"}" property="${"og:image:height"}"${add_attribute("content", `${seo.image.responsiveImage.height}`, 0)} data-svelte="svelte-ajtuxi">` : ``}<meta key="${"og:url"}" property="${"og:url"}"${add_attribute("content", `https://www.hornebom.com/${slug ? slug : ""}`, 0)} data-svelte="svelte-ajtuxi"><meta key="${"twitter:card"}" name="${"twitter:card"}"${add_attribute("content", seo && seo.twitterCard || "summary_large_image", 0)} data-svelte="svelte-ajtuxi">`, ""}`;
+});
+var HeroMain = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let formattedTitle;
+  let { title } = $$props;
+  if ($$props.title === void 0 && $$bindings.title && title !== void 0)
+    $$bindings.title(title);
+  formattedTitle = title.replace(/(<p)/igm, "<h1").replace(/<\/p>/igm, "</h1>");
+  return `<section><!-- HTML_TAG_START -->${formattedTitle}<!-- HTML_TAG_END --></section>`;
+});
+var StructuredText = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { text } = $$props;
+  const options2 = {
+    renderLinkToRecord({ record, children, adapter: { renderNode } }) {
+      const href = record._modelApiKey === "page" ? `/${record.slug}` : "/";
+      return renderNode("a", { href }, children);
+    },
+    customRules: [
+      (0, import_datocms_structured_text_to_dom_nodes.renderRule)(import_datocms_structured_text_utils.isHeading, ({ adapter: { renderNode }, node, children, key }) => {
+        return renderNode(`h${node.level}`, { key, classList: "class-name" }, children);
+      })
+    ]
+  };
+  const nodes = (0, import_datocms_structured_text_to_dom_nodes.render)(text, options2);
+  if ($$props.text === void 0 && $$bindings.text && text !== void 0)
+    $$bindings.text(text);
+  return `${each(nodes, ({ outerHTML }) => `<!-- HTML_TAG_START -->${outerHTML}<!-- HTML_TAG_END -->`)}`;
+});
+var TextSection = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { title } = $$props;
+  let { columnLeft } = $$props;
+  let { columnRight } = $$props;
+  if ($$props.title === void 0 && $$bindings.title && title !== void 0)
+    $$bindings.title(title);
+  if ($$props.columnLeft === void 0 && $$bindings.columnLeft && columnLeft !== void 0)
+    $$bindings.columnLeft(columnLeft);
+  if ($$props.columnRight === void 0 && $$bindings.columnRight && columnRight !== void 0)
+    $$bindings.columnRight(columnRight);
+  return `<section>${title ? `<h2>${escape(title)}</h2>` : ``}
+
+  ${columnLeft ? `${validate_component(StructuredText, "StructuredText").$$render($$result, { text: columnLeft }, {}, {})}` : ``}
+  
+  ${columnRight ? `${validate_component(StructuredText, "StructuredText").$$render($$result, { text: columnRight }, {}, {})}` : ``}</section>`;
+});
+var Sections = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { sections } = $$props;
+  const types2 = {
+    "hero_main": HeroMain,
+    "text_section": TextSection
+  };
+  if ($$props.sections === void 0 && $$bindings.sections && sections !== void 0)
+    $$bindings.sections(sections);
+  return `${each(sections, ({ _modelApiKey, ...rest }) => `${types2[_modelApiKey] ? `${validate_component(types2[_modelApiKey] || missing_component, "svelte:component").$$render($$result, Object.assign(rest), {}, {})}` : `<p>No section of type: ${escape(_modelApiKey)}</p>`}`)}`;
+});
+var prerender$1 = true;
+async function load$1({ fetch: fetch2, page: page2 }) {
+  const { slug } = page2.params;
+  const token = "a54861921a6272e65b9e0c77891669";
+  const { home } = await datoRequest({ query: query$2, fetch: fetch2, token });
+  return { props: { page: { ...home, slug } } };
 }
 var Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { page: page2 } = $$props;
   if ($$props.page === void 0 && $$bindings.page && page2 !== void 0)
     $$bindings.page(page2);
-  return `${$$result.head += `${$$result.title = `<title>Home</title>`, ""}`, ""}
+  return `${validate_component(SeoHead, "SeoHead").$$render($$result, { seo: page2.seoMeta, slug: page2.slug }, {}, {})}
 
-<section><h1>Home ${escape(page2.title)}</h1>
-	<div>${escape(page2.body)}</div>
 
-</section>`;
+
+${page2.sections ? `${validate_component(Sections, "Sections").$$render($$result, { sections: page2.sections }, {}, {})}` : ``}`;
 });
 var index = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   [Symbol.toStringTag]: "Module",
   "default": Routes,
-  prerender: prerender$3,
-  load
+  prerender: prerender$1,
+  load: load$1
 });
-var hydrate$2 = dev;
-var router$2 = browser;
-var prerender$2 = true;
-var Exploration = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `${$$result.head += `${$$result.title = `<title>Exploration</title>`, ""}`, ""}
-
-<div><h1>Exploration</h1>
-</div>`;
-});
-var exploration = /* @__PURE__ */ Object.freeze({
-  __proto__: null,
-  [Symbol.toStringTag]: "Module",
-  "default": Exploration,
-  hydrate: hydrate$2,
-  router: router$2,
-  prerender: prerender$2
-});
-var hydrate$1 = dev;
-var router$1 = browser;
-var prerender$1 = true;
-var Profile = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `${$$result.head += `${$$result.title = `<title>Profile</title>`, ""}`, ""}
-
-<div><h1>Profile</h1>
-</div>`;
-});
-var profile = /* @__PURE__ */ Object.freeze({
-  __proto__: null,
-  [Symbol.toStringTag]: "Module",
-  "default": Profile,
-  hydrate: hydrate$1,
-  router: router$1,
-  prerender: prerender$1
-});
-var hydrate = dev;
-var router = browser;
 var prerender = true;
-var Work = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  return `${$$result.head += `${$$result.title = `<title>Work</title>`, ""}`, ""}
+async function load({ page: page2, fetch: fetch2 }) {
+  const { slug } = page2.params;
+  const token = "a54861921a6272e65b9e0c77891669";
+  const data = await datoRequest({ query, variables: { slug }, fetch: fetch2, token });
+  if (!data.page) {
+    return;
+  }
+  return { props: { data: data.page } };
+}
+var U5Bslugu5D = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let seoProps;
+  let $page, $$unsubscribe_page;
+  $$unsubscribe_page = subscribe(page, (value) => $page = value);
+  let { data } = $$props;
+  if ($$props.data === void 0 && $$bindings.data && data !== void 0)
+    $$bindings.data(data);
+  seoProps = {
+    seo: data.seoMeta,
+    slug: $page.params.slug
+  };
+  $$unsubscribe_page();
+  return `${validate_component(SeoHead, "SeoHead").$$render($$result, Object.assign(seoProps), {}, {})}
 
-<div><h1>Work</h1>
-</div>`;
+<section>${data.title ? `<h1>${escape(data.title)}</h1>` : ``}
+</section>`;
 });
-var work = /* @__PURE__ */ Object.freeze({
+var _slug_ = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   [Symbol.toStringTag]: "Module",
-  "default": Work,
-  hydrate,
-  router,
-  prerender
+  "default": U5Bslugu5D,
+  prerender,
+  load
 });
 
 // .svelte-kit/netlify/entry.js
@@ -2994,6 +4960,12 @@ function splitHeaders(headers) {
 0 && (module.exports = {
   handler
 });
+/*!
+ * Cross-Browser Split 1.1.1
+ * Copyright 2007-2012 Steven Levithan <stevenlevithan.com>
+ * Available under the MIT License
+ * ECMAScript compliant, uniform cross-browser split method
+ */
 /*!
  * cookie
  * Copyright(c) 2012-2014 Roman Shtylman

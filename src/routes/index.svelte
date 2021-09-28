@@ -14,18 +14,24 @@
 
 <script>
 	import SeoHead from '$lib/seo-head/SeoHead.svelte'
+	import Sections from '$lib/sections/Sections.svelte'
+	
 	export let page
 </script>
 
 <SeoHead seo={page.seoMeta} slug={page.slug} />
 
-<section>
+<!-- <section>
 	{#if page.title}
 		<h1>
 			{page.title}
 		</h1>
 	{/if}
-</section>
+</section> -->
+
+{#if page.sections}
+	<Sections sections={page.sections} />
+{/if}
 
 <style>
 </style>

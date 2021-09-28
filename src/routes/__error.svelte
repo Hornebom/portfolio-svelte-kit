@@ -2,17 +2,27 @@
   export function load({ error, status }) {
 		return {
 			props: {
-				title: `${status}: ${error.message}`
+				props: { error, status },
 			}
 		}
 	}
 </script>
 
 <script>
-	export let title
+	export let error
+	export let status
 </script>
 
-<h1>{title}</h1>
+<svelte:head>
+  <title>{status}</title>
+</svelte:head>
+
+<h1>
+	{status}
+	{#if error}
+	: {error.message}
+	{/if}
+</h1>
 <a sveltekit:prefetch href="/">Home</a>
 
 <style>

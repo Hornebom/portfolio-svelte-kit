@@ -1,7 +1,7 @@
 <script>
 	import { page } from '$app/stores'
 
-	export let pages
+	export let pages 
 </script>
 
 <footer>
