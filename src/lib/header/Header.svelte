@@ -21,6 +21,16 @@
 			{/each}
 		</ul>
 	</nav>
+
+	<ul>
+		{#each socials as { url, title }}
+			<li>
+				<a href={url} target="_blank" rel="noopener noreferrer">
+					{title}
+				</a>
+			</li>
+		{/each}
+	</ul>
 </header>
 
 <style>

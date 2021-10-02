@@ -4466,9 +4466,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-8ff15195.js",
+      file: assets + "/_app/start-43a4f68a.js",
       css: [assets + "/_app/assets/start-61d1577b.css"],
-      js: [assets + "/_app/start-8ff15195.js", assets + "/_app/chunks/vendor-29f32bcf.js"]
+      js: [assets + "/_app/start-43a4f68a.js", assets + "/_app/chunks/vendor-b50ad44c.js"]
     },
     fetched: void 0,
     floc: false,
@@ -4562,7 +4562,7 @@ var module_lookup = {
     return _slug_;
   })
 };
-var metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-6b83cb84.js", "css": ["assets/pages/__layout.svelte-3a2b9985.css"], "js": ["pages/__layout.svelte-6b83cb84.js", "chunks/vendor-29f32bcf.js", "chunks/dato-request-402a6275.js", "chunks/stores-a031842d.js"], "styles": [] }, "src/routes/__error.svelte": { "entry": "pages/__error.svelte-7cb435ba.js", "css": [], "js": ["pages/__error.svelte-7cb435ba.js", "chunks/vendor-29f32bcf.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-d6930aa4.js", "css": [], "js": ["pages/index.svelte-d6930aa4.js", "chunks/vendor-29f32bcf.js", "chunks/dato-request-402a6275.js", "chunks/SeoHead-ec4761af.js"], "styles": [] }, "src/routes/[slug].svelte": { "entry": "pages/[slug].svelte-ca661112.js", "css": [], "js": ["pages/[slug].svelte-ca661112.js", "chunks/vendor-29f32bcf.js", "chunks/dato-request-402a6275.js", "chunks/SeoHead-ec4761af.js", "chunks/stores-a031842d.js"], "styles": [] } };
+var metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-056cc3c9.js", "css": ["assets/pages/__layout.svelte-3a2b9985.css"], "js": ["pages/__layout.svelte-056cc3c9.js", "chunks/vendor-b50ad44c.js", "chunks/dato-request-402a6275.js", "chunks/stores-2564c142.js"], "styles": [] }, "src/routes/__error.svelte": { "entry": "pages/__error.svelte-1054687e.js", "css": [], "js": ["pages/__error.svelte-1054687e.js", "chunks/vendor-b50ad44c.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-72b1a4cc.js", "css": [], "js": ["pages/index.svelte-72b1a4cc.js", "chunks/vendor-b50ad44c.js", "chunks/dato-request-402a6275.js", "chunks/Sections-0e2abe90.js"], "styles": [] }, "src/routes/[slug].svelte": { "entry": "pages/[slug].svelte-60d13575.js", "css": [], "js": ["pages/[slug].svelte-60d13575.js", "chunks/vendor-b50ad44c.js", "chunks/dato-request-402a6275.js", "chunks/Sections-0e2abe90.js", "chunks/stores-2564c142.js"], "styles": [] } };
 async function load_component(file) {
   const { entry, css: css2, js, styles } = metadata_lookup[file];
   return {
@@ -4593,13 +4593,6 @@ var seoMeta = `
     }
   }
 `;
-var heroMain = `
-  _modelApiKey
-  title
-  text {
-    value
-  }
-`;
 var structuredText = `
   value
   links {
@@ -4612,6 +4605,13 @@ var structuredText = `
       _modelApiKey
       slug
     }
+  }
+`;
+var heroMain = `
+  _modelApiKey
+  title
+  text {
+    ${structuredText}
   }
 `;
 var textSection = `
@@ -4653,6 +4653,11 @@ var query$1 = `
         title
       }
     }
+    allSocials {
+      key
+      title
+      url
+    }
   }
 `;
 var layout_query = /* @__PURE__ */ Object.freeze({
@@ -4660,11 +4665,68 @@ var layout_query = /* @__PURE__ */ Object.freeze({
   [Symbol.toStringTag]: "Module",
   "default": query$1
 });
+var heroPage = `
+  _modelApiKey
+  title
+  text {
+    ${structuredText}
+  }
+`;
+var image = `
+  format
+  url
+  width
+  height
+  title
+`;
+var responsiveImage = `
+  srcSet
+  webpSrcSet
+  sizes
+  src
+
+  # size information (post-transformations)
+  width
+  height
+  aspectRatio
+
+  # SEO attributes
+  alt
+  title
+
+  # background color placeholder or...
+  bgColor
+
+  # blur-up placeholder, JPEG format, base64-encoded
+  base64
+`;
+var project = `
+  _modelApiKey
+  title
+  text {
+    ${structuredText}
+  }
+  url
+  image {
+    ${image}
+    responsiveImage(imgixParams: {  fit: crop, w: 1177, h: 730, auto: format }) {
+      ${responsiveImage}
+    }
+  }
+`;
 var query = `
   query Page($slug: String) {
     page(filter: {slug: {eq: $slug}}) {
       title
       ${seoMeta}
+      sections {
+        ...on HeroPageRecord {
+          ${heroPage}
+        }
+        ...on ProjectRecord {
+          ${project}
+        }
+      }
     }
   }
 `;
@@ -4726,13 +4788,19 @@ var Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $page, $$unsubscribe_page;
   $$unsubscribe_page = subscribe(page, (value) => $page = value);
   let { pages } = $$props;
+  let { socials } = $$props;
   if ($$props.pages === void 0 && $$bindings.pages && pages !== void 0)
     $$bindings.pages(pages);
+  if ($$props.socials === void 0 && $$bindings.socials && socials !== void 0)
+    $$bindings.socials(socials);
   $$unsubscribe_page();
   return `<header><div><a sveltekit:prefetch href="${"/"}">Home</a></div>
 
 	<nav><ul>${each(pages, ({ slug, title }) => `<li${add_classes([$page.path === `/${slug}` ? "active" : ""].join(" ").trim())}><a sveltekit:prefetch${add_attribute("href", `/${slug}`, 0)}>${escape(title)}</a>
 				</li>`)}</ul></nav>
+
+	<ul>${each(socials, ({ url, title }) => `<li><a${add_attribute("href", url, 0)} target="${"_blank"}" rel="${"noopener noreferrer"}">${escape(title)}</a>
+			</li>`)}</ul>
 </header>`;
 });
 var Footer = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -4748,17 +4816,22 @@ var Footer = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 async function load$3({ page: page2, fetch: fetch2 }) {
   const token = "a54861921a6272e65b9e0c77891669";
-  const { navigation } = await datoRequest({ query: query$1, fetch: fetch2, token });
+  const { navigation, allSocials } = await datoRequest({ query: query$1, fetch: fetch2, token });
   if (!navigation) {
     return;
   }
-  return { props: { navigation } };
+  return {
+    props: { navigation, socials: allSocials }
+  };
 }
 var _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { navigation } = $$props;
+  let { socials } = $$props;
   if ($$props.navigation === void 0 && $$bindings.navigation && navigation !== void 0)
     $$bindings.navigation(navigation);
-  return `${validate_component(Header, "Header").$$render($$result, { pages: navigation.links }, {}, {})}
+  if ($$props.socials === void 0 && $$bindings.socials && socials !== void 0)
+    $$bindings.socials(socials);
+  return `${validate_component(Header, "Header").$$render($$result, { pages: navigation.links, socials }, {}, {})}
 <main>${slots.default ? slots.default({}) : ``}</main>
 ${validate_component(Footer, "Footer").$$render($$result, { pages: navigation.links }, {}, {})}`;
 });
@@ -4805,14 +4878,6 @@ var SeoHead = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     
     <meta key="${"og:image:height"}" property="${"og:image:height"}"${add_attribute("content", `${seo.image.responsiveImage.height}`, 0)} data-svelte="svelte-ajtuxi">` : ``}<meta key="${"og:url"}" property="${"og:url"}"${add_attribute("content", `https://www.hornebom.com/${slug ? slug : ""}`, 0)} data-svelte="svelte-ajtuxi"><meta key="${"twitter:card"}" name="${"twitter:card"}"${add_attribute("content", seo && seo.twitterCard || "summary_large_image", 0)} data-svelte="svelte-ajtuxi">`, ""}`;
 });
-var HeroMain = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let formattedTitle;
-  let { title } = $$props;
-  if ($$props.title === void 0 && $$bindings.title && title !== void 0)
-    $$bindings.title(title);
-  formattedTitle = title.replace(/(<p)/igm, "<h1").replace(/<\/p>/igm, "</h1>");
-  return `<section><!-- HTML_TAG_START -->${formattedTitle}<!-- HTML_TAG_END --></section>`;
-});
 var StructuredText = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { text } = $$props;
   const options2 = {
@@ -4822,7 +4887,7 @@ var StructuredText = create_ssr_component(($$result, $$props, $$bindings, slots)
     },
     customRules: [
       (0, import_datocms_structured_text_to_dom_nodes.renderRule)(import_datocms_structured_text_utils.isHeading, ({ adapter: { renderNode }, node, children, key }) => {
-        return renderNode(`h${node.level}`, { key, classList: "class-name" }, children);
+        return renderNode("h2", { key, classList: "class-name" }, children);
       })
     ]
   };
@@ -4830,6 +4895,30 @@ var StructuredText = create_ssr_component(($$result, $$props, $$bindings, slots)
   if ($$props.text === void 0 && $$bindings.text && text !== void 0)
     $$bindings.text(text);
   return `${each(nodes, ({ outerHTML }) => `<!-- HTML_TAG_START -->${outerHTML}<!-- HTML_TAG_END -->`)}`;
+});
+var HeroMain = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let formattedTitle;
+  let { title } = $$props;
+  let { text } = $$props;
+  if ($$props.title === void 0 && $$bindings.title && title !== void 0)
+    $$bindings.title(title);
+  if ($$props.text === void 0 && $$bindings.text && text !== void 0)
+    $$bindings.text(text);
+  formattedTitle = title.replace(/(<p)/igm, "<h1").replace(/<\/p>/igm, "</h1>");
+  return `<section><!-- HTML_TAG_START -->${formattedTitle}<!-- HTML_TAG_END -->
+
+  ${text ? `<div>${validate_component(StructuredText, "StructuredText").$$render($$result, { text }, {}, {})}</div>` : ``}</section>`;
+});
+var HeroPage = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { title } = $$props;
+  let { text } = $$props;
+  if ($$props.title === void 0 && $$bindings.title && title !== void 0)
+    $$bindings.title(title);
+  if ($$props.text === void 0 && $$bindings.text && text !== void 0)
+    $$bindings.text(text);
+  return `<section>${title ? `<h1>${escape(title)}</h1>` : ``}
+
+  ${text && text.value ? `<div>${validate_component(StructuredText, "StructuredText").$$render($$result, { text }, {}, {})}</div>` : ``}</section>`;
 });
 var TextSection = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { title } = $$props;
@@ -4847,11 +4936,46 @@ var TextSection = create_ssr_component(($$result, $$props, $$bindings, slots) =>
   
   ${columnRight ? `${validate_component(StructuredText, "StructuredText").$$render($$result, { text: columnRight }, {}, {})}` : ``}</section>`;
 });
+var Image = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { image: image2 } = $$props;
+  const width = image2.format === "svg" ? image2.width : image2.responsiveImage.width;
+  const height = image2.format === "svg" ? image2.height : image2.responsiveImage.height;
+  const altText = image2.alt || "";
+  if ($$props.image === void 0 && $$bindings.image && image2 !== void 0)
+    $$bindings.image(image2);
+  return `<div><span style="${"padding-top: " + escape(height / width * 100) + "%"}"></span>
+
+  ${image2.format === "svg" ? `<img${add_attribute("src", image2.url, 0)}${add_attribute("alt", altText, 0)}>` : `<img${add_attribute("src", image2.url, 0)}${add_attribute("alt", altText, 0)}${add_attribute("title", image2.title, 0)}${add_attribute("width", width, 0)}${add_attribute("height", height, 0)}${add_attribute("srcset", image2.responsiveImage.srcSet, 0)}${add_attribute("sizes", image2.responsiveImage.sizes, 0)} loading="${"lazy"}">`}</div>`;
+});
+var Project = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { title } = $$props;
+  let { text } = $$props;
+  let { url } = $$props;
+  let { image: image2 } = $$props;
+  if ($$props.title === void 0 && $$bindings.title && title !== void 0)
+    $$bindings.title(title);
+  if ($$props.text === void 0 && $$bindings.text && text !== void 0)
+    $$bindings.text(text);
+  if ($$props.url === void 0 && $$bindings.url && url !== void 0)
+    $$bindings.url(url);
+  if ($$props.image === void 0 && $$bindings.image && image2 !== void 0)
+    $$bindings.image(image2);
+  return `<article>${title ? `<h2>${escape(title)}</h2>` : ``}
+
+  ${text ? `<div>${validate_component(StructuredText, "StructuredText").$$render($$result, { text }, {}, {})}</div>` : ``}
+
+  ${url ? `<a${add_attribute("href", url, 0)} target="${"_blank"}" rel="${"noopener noreferrer"}">See it live
+    </a>` : ``}
+  
+  ${image2 ? `${validate_component(Image, "Image").$$render($$result, { image: image2 }, {}, {})}` : ``}</article>`;
+});
 var Sections = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { sections } = $$props;
   const types2 = {
     "hero_main": HeroMain,
-    "text_section": TextSection
+    "hero_page": HeroPage,
+    "text_section": TextSection,
+    "project": Project
   };
   if ($$props.sections === void 0 && $$bindings.sections && sections !== void 0)
     $$bindings.sections(sections);
@@ -4869,8 +4993,6 @@ var Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   if ($$props.page === void 0 && $$bindings.page && page2 !== void 0)
     $$bindings.page(page2);
   return `${validate_component(SeoHead, "SeoHead").$$render($$result, { seo: page2.seoMeta, slug: page2.slug }, {}, {})}
-
-
 
 ${page2.sections ? `${validate_component(Sections, "Sections").$$render($$result, { sections: page2.sections }, {}, {})}` : ``}`;
 });
@@ -4905,8 +5027,7 @@ var U5Bslugu5D = create_ssr_component(($$result, $$props, $$bindings, slots) => 
   $$unsubscribe_page();
   return `${validate_component(SeoHead, "SeoHead").$$render($$result, Object.assign(seoProps), {}, {})}
 
-<section>${data.title ? `<h1>${escape(data.title)}</h1>` : ``}
-</section>`;
+${data.sections ? `${validate_component(Sections, "Sections").$$render($$result, { sections: data.sections }, {}, {})}` : ``}`;
 });
 var _slug_ = /* @__PURE__ */ Object.freeze({
   __proto__: null,
