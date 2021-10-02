@@ -36,3 +36,15 @@ npm run build
 ```
 
 > You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+
+## Fix Netlify build error / stream
+```
+A Netlify Function failed to require one of its dependencies.
+Please make sure it is present in the site's top-level "package.json".
+​
+In file "/opt/build/repo/.netlify/functions-internal/__render.js"
+Cannot find module 'stream/package.json'
+```
+
+See [further info](https://answers.netlify.com/t/netlify-functions-cannot-find-module/23093/10)
+The package `stream` was added to `package.json` to fix error
