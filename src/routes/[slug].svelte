@@ -32,11 +32,11 @@
 
 {#key $page.path}
 	<SeoHead {...seoProps} />
-{/key}
 
-{#if data.sections}
-	<Sections sections={data.sections} />
-{/if}
+	{#if data.sections}
+		<Sections sections={data.sections} />
+	{/if}
+{/key}
 
 <style>
 </style>
