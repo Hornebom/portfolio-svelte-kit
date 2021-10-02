@@ -2,6 +2,7 @@
 	import { page } from '$app/stores'
 
 	export let pages
+	export let socials
 </script>
 
 <header>

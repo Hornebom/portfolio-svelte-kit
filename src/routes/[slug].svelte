@@ -22,6 +22,8 @@
 <script>
 	import { page } from '$app/stores'
 	import SeoHead from '$lib/seo-head/SeoHead.svelte'
+	import Sections from '$lib/sections/Sections.svelte'
+
 	export let data
 
 	$: seoProps = {seo: data.seoMeta, slug: $page.params.slug}
@@ -32,13 +34,9 @@
 	<SeoHead {...seoProps} />
 {/key}
 
-<section>
-	{#if data.title }
-		<h1>
-			{data.title}
-		</h1>
-	{/if}
-</section>
+{#if data.sections}
+	<Sections sections={data.sections} />
+{/if}
 
 <style>
 </style>

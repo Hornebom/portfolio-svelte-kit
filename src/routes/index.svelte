@@ -21,14 +21,6 @@
 
 <SeoHead seo={page.seoMeta} slug={page.slug} />
 
-<!-- <section>
-	{#if page.title}
-		<h1>
-			{page.title}
-		</h1>
-	{/if}
-</section> -->
-
 {#if page.sections}
 	<Sections sections={page.sections} />
 {/if}

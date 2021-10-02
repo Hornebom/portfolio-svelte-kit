@@ -4,13 +4,14 @@
 
 	export async function load({ page, fetch }) {
 		const token = import.meta.env.VITE_DATO_API_TOKEN
-		const { navigation } = await datoRequest({ query, fetch, token })
+		const { navigation, allSocials } = await datoRequest({ query, fetch, token })
 		
+		// @TODO: what is this check for?
 		if(!navigation) {
 			return
 		}
 
-		return { props: { navigation } }
+		return { props: { navigation, socials: allSocials } }
 	}
 </script>
 
@@ -20,9 +21,10 @@
 	import '../app.css'
 	
 	export let navigation
+	export let socials
 </script>
 
-<Header pages={navigation.links} />
+<Header pages={navigation.links} socials={socials} />
 <main>
 	<slot />
 </main>

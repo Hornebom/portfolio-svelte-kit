@@ -1,12 +1,16 @@
 <script>
   import HeroMain from '$lib/hero-main/HeroMain.svelte'
+  import HeroPage from '$lib/hero-page/HeroPage.svelte'
   import TextSection from '$lib/text-section/TextSection.svelte'
+  import Project from '$lib/project/Project.svelte'
   
   export let sections
 
   const types = {
     'hero_main': HeroMain,
-    'text_section': TextSection
+    'hero_page': HeroPage,
+    'text_section': TextSection,
+    'project': Project
   }
 </script>
 
