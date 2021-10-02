@@ -1,0 +1,10 @@
+:root {
+  --color-primary-raw: 20, 46, 242;
+  --color-secondary-raw: 137, 205, 210;
+
+  --color-primary: rgb( var(--color-primary-raw));
+  --color-secondary: rgb( var(--color-secondary-raw));
+
+  --font-base: 'Geomanist Regular';
+  --font-bold: 'Geomanist Bold';
+}

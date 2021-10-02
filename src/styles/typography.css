@@ -1,0 +1,13 @@
+
+body {
+  font-family: var(--font-base);
+  color: var(--color-primary);
+  font-size: 1.6rem;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-family: var(--font-bold);
+}
