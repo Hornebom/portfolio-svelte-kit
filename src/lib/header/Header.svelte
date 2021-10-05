@@ -1,15 +1,22 @@
 <script>
 	import { page } from '$app/stores'
 	import Socials from '$lib/socials/Socials.svelte'
+	import Burger from '$lib/burger/Burger.svelte'
 
 	export let pages
 	export let socials
+	let open = false
 </script>
 
 <header>
 	<div>
 		<a sveltekit:prefetch href="/">Home</a>
 	</div>
+
+	<Burger 
+		clickHandler={() => open = !open} 
+		open={open} 
+	/>
 
 	<nav>
 		<ul>
@@ -28,5 +35,6 @@
 	{/if}
 </header>
 
-<style>
+<style lang="scss">
+	@import './header.scss';
 </style>
