@@ -1,15 +1,15 @@
-.container {
+.gl-container {
   width: 100%;
   max-width: $media-large;
   margin-right: auto;
   margin-left: auto;
 }
 
-.container--xlarge {
+.gl-container--xlarge {
   max-width: $media-xlarge;
 }
 
-.section {
+.gl-section {
   padding-right: $space;
   padding-left: $space;
 }

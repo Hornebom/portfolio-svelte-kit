@@ -27,11 +27,11 @@
 }
 
 .root.open::before {
-  transform: translateY(0%) rotate(45deg);
+  transform: translateY(0%) rotate(45deg) scaleX(.8);
 }
 
 .root.open::after {
-  transform: translateY(0%) rotate(-45deg);
+  transform: translateY(0%) rotate(-45deg) scaleX(.8);
 }
 
 .root:not(.open):hover::before {

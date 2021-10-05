@@ -6,7 +6,7 @@
 <button 
   on:click={clickHandler} 
   aria-label={open ? 'Close navigation' : 'Open navigation'}
-  class="root"
+  class="root {$$restProps.class || ''}"
   class:open={open}
 />
 

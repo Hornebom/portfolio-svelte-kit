@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 
 .root {
   padding-top: 20vw;
@@ -19,13 +20,11 @@
 
 @supports (-webkit-text-stroke: 1px var(--color-secondary)) {
   .title {
-    -webkit-text-stroke: .02em var(--color-secondary);
-    -webkit-text-fill-color: transparent;
+    @include text-outline;
   }
 
   .title :global(strong) {
-    -webkit-text-stroke: 0;
-    -webkit-text-fill-color: var(--color-secondary);
+    @include text-outline-reset;
   }
 }
 

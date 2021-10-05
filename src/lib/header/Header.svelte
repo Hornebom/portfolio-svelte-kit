@@ -2,37 +2,60 @@
 	import { page } from '$app/stores'
 	import Socials from '$lib/socials/Socials.svelte'
 	import Burger from '$lib/burger/Burger.svelte'
+	import Logo from '$lib/logo/Logo.svelte'
 
 	export let pages
 	export let socials
 	let open = false
+
+	function closeNavigation() {
+		open = false
+	}
 </script>
 
-<header>
-	<div>
-		<a sveltekit:prefetch href="/">Home</a>
-	</div>
+<header class="root">
+	<a 
+		sveltekit:prefetch href="/"
+		aria-label="home"
+		class="logo"
+		on:click={closeNavigation}
+	>
+		<Logo />
+	</a>
 
 	<Burger 
 		clickHandler={() => open = !open} 
 		open={open} 
+		class="burger"
 	/>
 
-	<nav>
-		<ul>
-			{#each pages as { slug, title }}
-				<li class:active={$page.path === `/${slug}`}>
-					<a sveltekit:prefetch href={`/${slug}`}>
-						{title}
-					</a>
-				</li>
-			{/each}
-		</ul>
-	</nav>
+	<div class="container" class:open aria-hidden={!open}>
+		<div class="clipper">
+			<div class="content">
+				<nav class="nav">
+					<ul>
+						{#each pages as { slug, title }}
+							<li>
+								<a 
+									sveltekit:prefetch 
+									href={`/${slug}`} 
+									class="link"
+									class:active={$page.path === `/${slug}`}
+									on:click={closeNavigation}
+								>
+									{title}
+								</a>
+							</li>
+						{/each}
+					</ul>
+				</nav>
 
-	{#if socials}
-		<Socials items={socials} />
-	{/if}
+				{#if socials}
+					<Socials items={socials} />
+				{/if}
+			</div>
+		</div>
+	</div>
 </header>
 
 <style lang="scss">

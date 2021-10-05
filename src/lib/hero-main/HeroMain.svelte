@@ -9,8 +9,8 @@
   $: titleInnerText = title.replace(/(<p>)/igm, '').replace(/<\/p>/igm, '')
 </script>
 
-<section class="section root">
-  <div class="container container--xlarge">
+<section class="gl-section root">
+  <div class="gl-container gl-container--xlarge">
     <h1 class="title typo-bold">
       {@html titleInnerText}
     </h1>
