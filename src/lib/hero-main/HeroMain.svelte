@@ -1,17 +1,34 @@
 <script>
   import StructuredText from '$lib/structured-text/StructuredText.svelte'
+  import Socials from '$lib/socials/Socials.svelte'
+  
   export let title
   export let text
+  export let socials
 
-  $: formattedTitle = title.replace(/(<p)/igm, '<h1').replace(/<\/p>/igm, '</h1>')
+  $: titleInnerText = title.replace(/(<p>)/igm, '').replace(/<\/p>/igm, '')
 </script>
 
-<section>
-  {@html formattedTitle}
+<section class="section root">
+  <div class="container container--xlarge">
+    <h1 class="title typo-bold">
+      {@html titleInnerText}
+    </h1>
 
-  {#if text}
+    <div class="content">
+      {#if text}
+        <div class="text">
+          <StructuredText text={text} />
+        </div>
+      {/if}
+      
+      {#if socials}
+        <Socials items={socials} />
+      {/if}
     <div>
-      <StructuredText text={text} />
-    </div>
-  {/if}
+  </div>
 </section>
+
+<style lang="scss">
+  @import './hero-main.scss';
+</style>

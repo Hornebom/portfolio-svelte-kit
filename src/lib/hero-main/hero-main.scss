@@ -1,0 +1,46 @@
+@import '../../styles/variables.scss';
+
+.root {
+  padding-top: 20vw;
+
+  @media screen and (min-width: $media-small) {
+    padding-top: 15vh;
+  }
+}
+
+.title {
+  font-size: 10vw;
+  line-height: 1.05em;
+
+  @media screen and (min-width: $media-xlarge) {
+    font-size: 14rem;
+  }
+}
+
+@supports (-webkit-text-stroke: 1px var(--color-secondary)) {
+  .title {
+    -webkit-text-stroke: .02em var(--color-secondary);
+    -webkit-text-fill-color: transparent;
+  }
+
+  .title :global(strong) {
+    -webkit-text-stroke: 0;
+    -webkit-text-fill-color: var(--color-secondary);
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: $space;
+  margin-top: $space;
+
+  @media screen and (min-width: $media-medium) {
+    flex-direction: row;
+    align-items: start;
+  }
+}
+
+.text {
+  max-width: 560px;
+}

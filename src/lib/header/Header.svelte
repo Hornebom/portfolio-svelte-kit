@@ -1,5 +1,6 @@
 <script>
 	import { page } from '$app/stores'
+	import Socials from '$lib/socials/Socials.svelte'
 
 	export let pages
 	export let socials
@@ -22,15 +23,9 @@
 		</ul>
 	</nav>
 
-	<ul>
-		{#each socials as { url, title }}
-			<li>
-				<a href={url} target="_blank" rel="noopener noreferrer">
-					{title}
-				</a>
-			</li>
-		{/each}
-	</ul>
+	{#if socials}
+		<Socials items={socials} />
+	{/if}
 </header>
 
 <style>
