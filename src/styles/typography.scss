@@ -1,13 +1,17 @@
 
 body {
-  font-family: var(--font-base);
+  font-family: $font-base;
   color: var(--color-secondary);
   font-size: 1.6rem;
   line-height: 1.4;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  @media screen and (min-width: $media-small) {
+    font-size: 2rem;
+  }
 }
 
-h1 {
-  font-family: var(--font-bold);
+.typo-bold {
+  font-family: $font-bold;
 }

@@ -1,3 +1,5 @@
+import socials from '$lib/socials/socials.fragment'
+
 const query = `
   query Navigation {
     navigation {
@@ -7,9 +9,7 @@ const query = `
       }
     }
     allSocials {
-      key
-      title
-      url
+      ${socials}
     }
   }
 `

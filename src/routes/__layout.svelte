@@ -5,11 +5,6 @@
 	export async function load({ page, fetch }) {
 		const token = import.meta.env.VITE_DATO_API_TOKEN
 		const { navigation, allSocials } = await datoRequest({ query, fetch, token })
-		
-		// @TODO: what is this check for?
-		if(!navigation) {
-			return
-		}
 
 		return { props: { navigation, socials: allSocials } }
 	}
@@ -18,7 +13,7 @@
 <script>
 	import Header from '$lib/header/Header.svelte'
 	import Footer from '$lib/footer/Footer.svelte'
-	import '../app.css'
+	import '../app.scss'
 	
 	export let navigation
 	export let socials
@@ -26,9 +21,6 @@
 
 <Header pages={navigation.links} socials={socials} />
 <main>
-	<slot />
+	<slot></slot>
 </main>
-<Footer pages={navigation.links} />
-
-<style>
-</style>
+<Footer pages="{navigation.links}" />

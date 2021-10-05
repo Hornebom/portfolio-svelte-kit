@@ -24,6 +24,3 @@
 {#if page.sections}
 	<Sections sections={page.sections} />
 {/if}
-
-<style>
-</style>
