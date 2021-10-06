@@ -39,7 +39,7 @@
 								<a 
 									sveltekit:prefetch 
 									href={`/${slug}`} 
-									class="link"
+									class="link gl-typo-outline"
 									class:active={$page.path === `/${slug}`}
 									on:click={closeNavigation}
 								>

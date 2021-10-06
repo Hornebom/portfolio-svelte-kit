@@ -4,11 +4,16 @@
 	export let pages 
 </script>
 
-<footer>
+<footer class="root">
   <ul>
     {#each pages as { slug, title }}
-      <li class:active={$page.path === `/${slug}`}>
-        <a sveltekit:prefetch href={`/${slug}`}>
+      <li>
+        <a 
+          sveltekit:prefetch 
+          href={`/${slug}`}
+          class:active={$page.path === `/${slug}`}
+          class="link gl-typo-outline"
+        >
           {title}
         </a>
       </li>
@@ -16,5 +21,6 @@
   </ul>
 </footer>
 
-<style>
+<style lang="scss">
+  @import './footer.scss';
 </style>
