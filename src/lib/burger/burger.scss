@@ -1,0 +1,43 @@
+.root {
+  position: relative;
+  display: block;
+  width: 36px;
+  height: 36px;
+}
+
+.root::before,
+.root::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 4px;
+
+  background-color: var(--color-secondary);
+  transition: transform .2s;
+}
+
+.root::before {
+  transform: translateY(-120%);
+}
+
+.root::after {
+  transform: translateY(120%);
+}
+
+.root.open::before {
+  transform: translateY(0%) rotate(45deg) scaleX(.8);
+}
+
+.root.open::after {
+  transform: translateY(0%) rotate(-45deg) scaleX(.8);
+}
+
+.root:not(.open):hover::before {
+  transform: translateY(-160%);
+}
+
+.root:not(.open):hover::after {
+  transform: translateY(160%);
+}
