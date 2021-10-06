@@ -1,6 +1,6 @@
 <script context="module">
 	import query from './layout.query.js'
-	import datoRequest from '$lib/dato-request.js'
+	import datoRequest from '$lib/utils/dato-request.js'
 
 	export async function load({ page, fetch }) {
 		const token = import.meta.env.VITE_DATO_API_TOKEN
