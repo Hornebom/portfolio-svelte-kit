@@ -1,5 +1,6 @@
 <script>
 	import { page } from '$app/stores'
+	import trapFocus from '$lib/actions/trap-focus'
 	import Socials from '$lib/socials/Socials.svelte'
 	import Burger from '$lib/burger/Burger.svelte'
 	import Logo from '$lib/logo/Logo.svelte'
@@ -13,7 +14,10 @@
 	}
 </script>
 
-<header class="root">
+<header 
+	class="root" 
+	use:trapFocus={{ active: open, onEscape: closeNavigation }}
+>
 	<a 
 		sveltekit:prefetch href="/"
 		aria-label="home"

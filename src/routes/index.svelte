@@ -1,6 +1,6 @@
 <script context="module">
 	import query from './index.query.js'
-	import datoRequest from '$lib/dato-request.js'
+	import datoRequest from '$lib/utils/dato-request.js'
 
 	export const prerender = true;
 	
