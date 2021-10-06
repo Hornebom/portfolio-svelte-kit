@@ -1,0 +1,25 @@
+@import '../../styles/variables.scss';
+
+.root {
+  padding: $space * 2;
+
+  @media screen and (min-width: $media-medium) {
+    padding-bottom: $space * 3;
+  }
+}
+
+.link {
+  display: inline-block;
+
+  line-height: 1em;
+  font-size: 10vw;
+  text-decoration: none;
+
+  @media screen and (min-width: $media-xsmall) {
+    font-size: 5rem;
+  }
+  
+  @media screen and (min-width: $media-medium) {
+    font-size: 9rem;
+  }
+}

@@ -1,5 +1,4 @@
 @import '../../styles/variables.scss';
-@import '../../styles/mixins.scss';
 
 .root {
   padding-top: 20vw;
@@ -15,16 +14,6 @@
 
   @media screen and (min-width: $media-xlarge) {
     font-size: 14rem;
-  }
-}
-
-@supports (-webkit-text-stroke: 1px var(--color-secondary)) {
-  .title {
-    @include text-outline;
-  }
-
-  .title :global(strong) {
-    @include text-outline-reset;
   }
 }
 

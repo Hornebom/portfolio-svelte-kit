@@ -6,12 +6,12 @@
   export let text
   export let socials
 
-  $: titleInnerText = title.replace(/(<p>)/igm, '').replace(/<\/p>/igm, '')
+  $: titleInnerText = title.replace(/(<p>)/igm, '').replace(/<\/p>/igm, '').replace(/(<strong>)/igm, '<strong class="gl-typo-outline-reset">')
 </script>
 
 <section class="gl-section root">
   <div class="gl-container gl-container--xlarge">
-    <h1 class="title typo-bold">
+    <h1 class="title gl-typo-outline">
       {@html titleInnerText}
     </h1>
 

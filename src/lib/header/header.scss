@@ -1,5 +1,4 @@
 @import '../../styles/variables.scss';
-@import '../../styles/mixins.scss';
 
 $duration: .8s;
 $easing: cubic-bezier(0.77, 0, 0.175, 1);
@@ -142,8 +141,6 @@ $logo-offset: 60px;
 
   line-height: 1em;
   font-size: 10vw;
-  font-family: $font-bold;
-  color: var(--color-secondary);
   text-decoration: none;
 
   @media screen and (min-width: $media-small) {
@@ -152,16 +149,5 @@ $logo-offset: 60px;
   
   @media screen and (min-width: $media-xlarge) {
     font-size: 10rem;
-  }
-}
-
-@supports (-webkit-text-stroke: 1px var(--color-secondary)) {
-  .link {
-    @include text-outline;
-  }
-
-  .link:hover,
-  .link.active {
-    @include text-outline-reset;
   }
 }
