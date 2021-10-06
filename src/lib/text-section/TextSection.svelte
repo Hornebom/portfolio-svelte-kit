@@ -6,18 +6,30 @@
   export let columnRight
 </script>
 
-<section>
-  {#if title}
-    <h2>
-      {title}
-    </h2>
-  {/if}
-
-  {#if columnLeft}
-    <StructuredText text={columnLeft} />
-  {/if}
-  
-  {#if columnRight}
-    <StructuredText text={columnRight} />
-  {/if}
+<section class="gl-section">
+  <div class="inner gl-container gl-container--xlarge">
+    {#if title}
+      <h2 class="gl-h2">
+        {title}
+      </h2>
+    {/if}
+      
+    <div class="cols">
+      {#if columnLeft}
+        <div class="gl-rich-text">
+          <StructuredText text={columnLeft} />
+        </div>
+        {/if}
+        
+        {#if columnRight}
+        <div class="gl-rich-text">
+          <StructuredText text={columnRight} />
+        </div>
+      {/if}
+    </div>
+  </div>
 </section>
+
+<style lang="scss">
+  @import './text-section.scss';
+</style>

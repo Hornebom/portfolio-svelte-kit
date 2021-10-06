@@ -1,20 +1,28 @@
 @import '../../styles/variables.scss';
 
 .root {
-  padding: $space * 2;
+  margin-top: $space * 5;
+  padding-bottom: $space * 2;
 
+  @media screen and (min-width: $media-small) {
+    margin-top: $space * 10;
+  }
+  
   @media screen and (min-width: $media-medium) {
-    padding-bottom: $space * 3;
+    margin-top: $space * 15;
+    padding-bottom: $space * 4;
   }
 }
 
-.link {
-  display: inline-block;
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.item {
   line-height: 1em;
   font-size: 10vw;
-  text-decoration: none;
-
+  
   @media screen and (min-width: $media-xsmall) {
     font-size: 5rem;
   }
@@ -22,4 +30,23 @@
   @media screen and (min-width: $media-medium) {
     font-size: 9rem;
   }
+}
+
+.item:not(:last-child)::after {
+  content: '/';
+  display: inline-block;
+  margin-right: 0.3em;
+  font-family: $font-bold;
+}
+
+@supports (-webkit-text-stroke: .02em var(--color-secondary)) {
+  .item:not(:last-child)::after {
+    -webkit-text-stroke: .02em var(--color-secondary);
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.link {
+  display: inline-block;
+  text-decoration: none;
 }

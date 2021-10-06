@@ -1,3 +1,15 @@
+.gl-sections > * + * {
+  margin-top: $space * 5;
+
+  @media screen and (min-width: $media-small) {
+    margin-top: $space * 10;
+  }
+  
+  @media screen and (min-width: $media-medium) {
+    margin-top: $space * 15;
+  }
+}
+
 .gl-container {
   width: 100%;
   max-width: $media-large;
@@ -9,7 +21,16 @@
   max-width: $media-xlarge;
 }
 
+.gl-top-spaced + .gl-top-spaced {
+  margin-top: $space * 10;
+}
+
 .gl-section {
   padding-right: $space;
   padding-left: $space;
+
+  @media screen and (min-width: $media-small) {
+    padding-right: $space * 2;
+    padding-left: $space * 2;
+  }
 }

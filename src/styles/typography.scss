@@ -12,13 +12,30 @@ body {
   }
 }
 
+// ============================= titles
+.gl-h2 {
+  font-family: $font-bold;
+  font-size: 2.5rem;
+  line-height: 1.1em;
+  font-weight: normal;
+
+  @media screen and (min-width: $media-small) {
+    font-size: 3rem;
+  }
+  
+  @media screen and (min-width: $media-medium) {
+    font-size: 4.5rem;
+  }
+}
+
+// ============================= outline
 .gl-typo-outline,
 .gl-typo-outline-reset {
   font-family: $font-bold;
   color: var(--color-secondary);
 }
 
-@supports (-webkit-text-stroke: 1px var(--color-secondary)) {
+@supports (-webkit-text-stroke: .02em var(--color-secondary)) {
   .gl-typo-outline {
     -webkit-text-stroke: .02em var(--color-secondary);
     -webkit-text-fill-color: transparent;
@@ -32,3 +49,46 @@ body {
   }
 }
 
+// ============================= rich text
+.gl-rich-text > * + * {
+  margin-top: 1em;
+}
+
+.gl-rich-text strong {
+  font-family: $font-bold;
+  font-weight: normal;
+}
+
+.gl-rich-text ul li {
+  display: grid;
+  grid-template-columns: $space 1fr;
+}
+
+.gl-rich-text ul li + li {
+  margin-top: .5em;
+}
+
+.gl-rich-text ul li::before {
+  content: '\00B7';
+  display: block;
+  width: $space;
+  font-family: $font-bold;
+}
+
+.gl-rich-text a:not([class]) {
+  color: var(--color-secondary);
+  text-decoration: none;
+  background-image: linear-gradient(var(--color-secondary), var(--color-secondary));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 1px;
+
+  &:hover {
+    background-image: none;
+  }
+}
+
+.gl-rich-text em {
+  font-size: .8em;
+  font-style: normal;
+}

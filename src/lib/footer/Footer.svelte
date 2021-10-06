@@ -4,10 +4,10 @@
 	export let pages 
 </script>
 
-<footer class="root">
-  <ul>
+<footer class="root gl-section">
+  <ul class="list gl-container gl-container--xlarge">
     {#each pages as { slug, title }}
-      <li>
+      <li class="item">
         <a 
           sveltekit:prefetch 
           href={`/${slug}`}

@@ -1,0 +1,20 @@
+@import '../../styles/variables.scss';
+
+.cols {
+  display: grid;
+  gap: $space;
+  margin-top: $space;
+
+  @media screen and (min-width: $media-small) {
+    gap: $space * 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  
+  @media screen and (min-width: $media-medium) {
+    gap: $space * 4;
+  }
+  
+  @media screen and (min-width: $media-large) {
+    gap: $space * 6;
+  }
+}
