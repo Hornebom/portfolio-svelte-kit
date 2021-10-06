@@ -124,7 +124,7 @@ $logo-offset: 60px;
   transform: translateX(-100%);
 
   @media screen and (min-width: $media-small) {
-    padding-left: calc(50% + #{$space});
+    padding-left: calc(50% + #{$space * 2});
   }
 
   .open & {
