@@ -37,6 +37,3 @@
 		<Sections sections={data.sections} />
 	{/if}
 {/key}
-
-<style>
-</style>
