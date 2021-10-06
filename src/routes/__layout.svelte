@@ -20,7 +20,7 @@
 </script>
 
 <Header pages={navigation.links} socials={socials} />
-<main>
+<main class="gl-sections">
 	<slot></slot>
 </main>
 <Footer pages="{navigation.links}" />
