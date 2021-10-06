@@ -15,5 +15,6 @@ const project = `
       ${responsiveImage}
     }
   }
+  flipped
 `
 export default project

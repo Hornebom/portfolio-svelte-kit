@@ -6,28 +6,44 @@
   export let text
   export let url
   export let image
+  export let flipped
 </script>
 
-<article>
-  {#if title}
-    <h2>
-      {title}
-    </h2>
-  {/if}
+<article class="gl-section gl-stacked" class:flipped>
+  <div class="gl-container gl-container--xlarge inner">
+    <div class="content">
+      {#if title}
+        <h2 class="gl-h2">
+          {title}
+        </h2>
+      {/if}
 
-  {#if text}
-    <div>
-      <StructuredText text={text} />
+      {#if text}
+        <div class="text">
+          <StructuredText text={text} />
+        </div>
+      {/if}
+
+      {#if url}
+        <a 
+          href={url} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="link"
+        >
+          See it live
+        </a>
+      {/if}
     </div>
-  {/if}
-
-  {#if url}
-    <a href={url} target="_blank" rel="noopener noreferrer">
-      See it live
-    </a>
-  {/if}
-  
-  {#if image}
-    <Image image={image} />
-  {/if}
+    
+    <div class="media">
+      {#if image}
+        <Image image={image} cover={true} />
+      {/if}
+    </div>
+  </div>
 </article>
+
+<style lang="scss">
+  @import './project.scss';
+</style>
