@@ -11,6 +11,12 @@
 
 <article class="gl-section gl-stacked" class:flipped>
   <div class="gl-container gl-container--xlarge inner">
+    <div class="media">
+      {#if image}
+        <Image image={image} cover={true} />
+      {/if}
+    </div>
+    
     <div class="content">
       {#if title}
         <h2 class="gl-h2">
@@ -19,7 +25,7 @@
       {/if}
 
       {#if text}
-        <div class="text">
+        <div class="text gl-rich-text">
           <StructuredText text={text} />
         </div>
       {/if}
@@ -33,12 +39,6 @@
         >
           See it live
         </a>
-      {/if}
-    </div>
-    
-    <div class="media">
-      {#if image}
-        <Image image={image} cover={true} />
       {/if}
     </div>
   </div>
