@@ -10,6 +10,14 @@
   }
 }
 
+.gl-sections .gl-stacked + .gl-stacked {
+  margin-top: $space * 3;
+  
+  @media screen and (min-width: $media-small) {
+    margin-top: 0;
+  }
+}
+
 .gl-container {
   width: 100%;
   max-width: $media-large;
