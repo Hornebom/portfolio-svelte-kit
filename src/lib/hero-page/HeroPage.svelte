@@ -5,16 +5,26 @@
   export let text
 </script>
 
-<section>
-  {#if title}
-    <h1>
-      {title}
-    </h1>
-  {/if}
-
-  {#if text && text.value}
-    <div>
-      <StructuredText text={text} />
+<section class="gl-section root">
+  <div class="gl-container gl-container--xlarge inner">
+    <div class="col">
+      {#if title}
+        <h1 class="gl-h2">
+          {title}
+        </h1>
+      {/if}
     </div>
-  {/if}
+
+    <div class="col">
+      {#if text && text.value}
+        <div class="gl-rich-text">
+          <StructuredText text={text} />
+        </div>
+      {/if}
+    </div>
+  </div>
 </section>
+
+<style lang="scss">
+  @import './hero-page.scss';
+</style>
