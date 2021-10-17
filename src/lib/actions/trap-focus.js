@@ -1,6 +1,6 @@
 import * as focusTrap from 'focus-trap'
 
-function trapFocus(node, { active, onEscape }) {
+function trapFocus(node, { active, onEscape = () => {}  }) {
   const trap = focusTrap.createFocusTrap(node, {
     escapeDeactivates: () => {
       onEscape()

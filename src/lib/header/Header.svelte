@@ -4,6 +4,7 @@
 	import Socials from '$lib/socials/Socials.svelte'
 	import Burger from '$lib/burger/Burger.svelte'
 	import Logo from '$lib/logo/Logo.svelte'
+	import Themes from '$lib/themes/Themes.svelte'
 
 	export let pages
 	export let socials
@@ -26,6 +27,8 @@
 	>
 		<Logo />
 	</a>
+
+	<Themes class="controls" />
 
 	<Burger 
 		clickHandler={() => open = !open} 
