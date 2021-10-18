@@ -12,7 +12,7 @@ const vertexShaderSource = `
   varying vec4 v_color;
 
   vec4 noiseColor(vec4 color_1, vec4 color_2) {
-    vec4 seed = vec4(-.5) + color_1 * vec4( vec3(2.), 1.);
+    vec4 seed = vec4(vec3(u_delta * .1), 1.);
     seed = mix(seed, a_vertex, .5);
     float noise = snoise( vec3(seed.xyz) + vec3(0.0, 0.0, u_delta));
     
