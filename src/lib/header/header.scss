@@ -12,7 +12,6 @@ $logo-offset: 60px;
   width: 100%;
   
   display: flex;
-  justify-content: space-between;
   align-items: center;
   
   padding-top: 12px;
@@ -20,9 +19,15 @@ $logo-offset: 60px;
   padding-left: 12px;
 }
 
+.root :global(.controls) {
+  z-index: 3;
+  position: relative;
+}
+
 .root :global(.burger) {
   z-index: 2;
   position: relative;
+  margin-left: $space * 1.5;
 }
 
 .logo {
@@ -31,11 +36,18 @@ $logo-offset: 60px;
   display: block;
   width: 36px;
   height: 36px;
+  margin-right: auto;
   
   border-radius: 50%;
   overflow: hidden;
   background-color: var(--color-secondary);
   box-shadow: 0 0 0 3px var(--color-primary);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .logo:focus {
+    outline: none;
+  }
 }
 
 .logo :global(svg) {

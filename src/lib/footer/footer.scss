@@ -1,6 +1,7 @@
 @import '../../styles/variables.scss';
 
 .root {
+  position: relative;
   margin-top: $space * 5;
   padding-bottom: $space * 2;
 

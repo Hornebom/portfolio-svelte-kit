@@ -1,7 +1,7 @@
 :root {
-  --color-primary-raw: 20, 46, 242;
-  --color-secondary-raw: 137, 205, 210;
+  --color-primary-raw: 0, 0, 0, 1;
+  --color-secondary-raw: 168, 143, 217, 1; // #FFDB7A; // #A88FD9;
 
-  --color-primary: rgb( var(--color-primary-raw));
-  --color-secondary: rgb( var(--color-secondary-raw));
+  --color-primary: rgba( var(--color-primary-raw));
+  --color-secondary: rgba( var(--color-secondary-raw));
 }
