@@ -11,7 +11,8 @@ function themeHandler() {
   const themes = readable({
     blue: [ .55, .63, .93, 1 ], 
     yellow: [ 1, .85, .48, 1 ], 
-    purple: [ .66, .56, .85, 1 ]
+    purple: [ .66, .56, .85, 1 ],
+    green: [ .74, .78, .5, 1 ]
   })
 
   const theme = writable('blue')

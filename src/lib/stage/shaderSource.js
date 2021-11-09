@@ -11,7 +11,12 @@ const vertexShaderSource = `
   }
 `
 const fragmentShaderSource = `
-  precision mediump float;
+  #ifdef GL_FRAGMENT_PRECISION_HIGH
+    precision highp float;
+  #else
+    precision mediump float;
+  #endif
+
   ${snoise}
 
   uniform vec4 u_color_primary;

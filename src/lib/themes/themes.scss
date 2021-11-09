@@ -32,14 +32,18 @@ $control-offset: 3px;
 
 .list {
   position: absolute;
-  top: 0;
-  right: calc(100% + #{$space * .5});
-  height: 100%;
+  top: 50%;
+  right: calc(100% + #{$space * .25});
+  transform: translateY(-50%);
 
   display: grid;
-  grid-template-columns: repeat(3, #{$control-size});
+  grid-template-columns: repeat(4, #{$control-size - $control-offset});
   align-items: center;
-  gap: $space * .25;
+  gap: $control-offset * 2;
+  padding: $control-offset;
+
+  background-color: var(--color-primary);
+  border-radius: 20px;
 }
 
 .list:not(.open) {
@@ -48,8 +52,8 @@ $control-offset: 3px;
 
 .theme-button {
   display: block;
-  width: $control-size - $control-offset * 2;
-  height: $control-size - $control-offset * 2;
+  width: $control-size - $control-offset;
+  height: $control-size - $control-offset;
 
   border-radius: 50%;
   background-color: var(--theme);

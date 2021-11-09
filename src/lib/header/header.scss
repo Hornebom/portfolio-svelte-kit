@@ -44,6 +44,12 @@ $logo-offset: 60px;
   box-shadow: 0 0 0 3px var(--color-primary);
 }
 
+@media (hover: none) and (pointer: coarse) {
+  .logo:focus {
+    outline: none;
+  }
+}
+
 .logo :global(svg) {
   display: block;
   width: 100%;
