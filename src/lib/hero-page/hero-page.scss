@@ -1,6 +1,13 @@
 @import '../../styles/variables.scss';
 
 .inner {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding-top: 25vmin;
+}
+
+.inner > * + * {
+  margin-top: $space;
+}
+
+.text {
+  max-width: $max-width-medium;
 }

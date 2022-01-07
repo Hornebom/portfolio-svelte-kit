@@ -26,7 +26,15 @@
 }
 
 .gl-container--xlarge {
-  max-width: $media-xlarge;
+  max-width: $max-width-xlarge;
+}
+
+.gl-container--large {
+  max-width: $max-width-large;
+}
+
+.gl-container--medium {
+  max-width: $max-width-medium;
 }
 
 .gl-top-spaced + .gl-top-spaced {
