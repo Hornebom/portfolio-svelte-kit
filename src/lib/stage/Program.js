@@ -1,4 +1,4 @@
-function createProgram(gl, vertexShaderSource, fragmentShaderSource ) {
+function Program(gl, vertexShaderSource, fragmentShaderSource ) {
     
   function compileShader(shaderSource, shaderType) {
     const shader = gl.createShader(shaderType)
@@ -7,21 +7,19 @@ function createProgram(gl, vertexShaderSource, fragmentShaderSource ) {
     return shader
   }
 
-  const program = gl.createProgram()
+  this.program = gl.createProgram()
   
   gl.attachShader(
-    program,
+    this.program,
     compileShader(vertexShaderSource, gl.VERTEX_SHADER)
   )
   gl.attachShader(
-    program,
+    this.program,
     compileShader(fragmentShaderSource, gl.FRAGMENT_SHADER)
   )
 
-  gl.linkProgram(program)
-  gl.useProgram(program)
-
-  return program
+  gl.linkProgram(this.program)
+  gl.useProgram(this.program)
 }
 
-export { createProgram }
+export { Program }

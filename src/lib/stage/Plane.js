@@ -1,22 +1,21 @@
-import { initBuffer } from './initBuffer'
-import { createProgram } from './createProgram'
+import { Buffer } from './Buffer'
+import { Program } from './Program'
 import { vertexShaderSource, fragmentShaderSource } from './shaderSource'
 
-function planeMesh(gl, colors) {
+function Plane(gl, colors) {
 
   const size = 1
   const segments = 30
-  const padding = 0
-  const unit = (size * 2 - padding * 2) / segments
+  const unit = (size * 2) / segments
   const vertices = []
   let x_start, x_end, y_start, y_end
 
   for(let i = 0; i < segments; i++) {
-    x_start = -size + padding + unit * i
+    x_start = -size + unit * i
     x_end = x_start + unit
     
     for(let j = 0; j < segments; j++) {
-      y_start = size - padding - unit * j
+      y_start = size - unit * j
       y_end = y_start - unit
 
       vertices.push(
@@ -34,9 +33,9 @@ function planeMesh(gl, colors) {
     
   }
 
-  const program = createProgram(gl, vertexShaderSource, fragmentShaderSource)
+  const { program } = new Program(gl, vertexShaderSource, fragmentShaderSource)
 
-  const vertexBuffer = initBuffer({
+  const buffer = new Buffer({
     gl, 
     program,
     data: vertices, 
@@ -48,32 +47,23 @@ function planeMesh(gl, colors) {
   const colorPrimaryLocation = gl.getUniformLocation(program, "u_color_primary")
   const colorSecondaryLocation = gl.getUniformLocation(program, "u_color_secondary")
   const deltaLocation = gl.getUniformLocation(program, "u_delta")
-  let delta = 0
-  let direction = 1
+  const offsetLocation = gl.getUniformLocation(program, "u_offset")
 
-  function render() {
-    if(delta > 10) {
-      direction = -1
-    } else if(delta < 0) {
-      direction = 1
-    }
-    delta += direction *  .005 // .001
-
+  this.render = (delta) => {
     gl.useProgram(program)
 
     gl.uniform4fv(colorPrimaryLocation, colors.primary)
     gl.uniform4fv(colorSecondaryLocation, colors.secondary)
 
-    gl.uniform1f(deltaLocation, delta + window.pageYOffset * .001)
+    gl.uniform1f(deltaLocation, delta * .0003)
+    gl.uniform1f(offsetLocation, window.pageYOffset * -.0005)
 
-    vertexBuffer.draw()
+    buffer.draw()
   }
 
-  function updateUniformColors(newColors) {
+  this.updateUniformColors = (newColors) => {
     colors = newColors 
   }
-
-  return { render, updateUniformColors }
 }
 
-export { planeMesh }
+export { Plane }
