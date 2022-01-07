@@ -1,4 +1,4 @@
-function initBuffer({ gl, program, data, size, name, mode }) {
+function Buffer({ gl, program, data, size, name, mode }) {
   const length = data.length / size
   const buffer = gl.createBuffer()
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
@@ -6,14 +6,12 @@ function initBuffer({ gl, program, data, size, name, mode }) {
 
   const location = gl.getAttribLocation(program, name)
 
-  function draw() {
+  this.draw = () => {
     gl.enableVertexAttribArray(location)
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
     gl.vertexAttribPointer(location, size, gl.FLOAT, false, 0, 0)
     gl.drawArrays(gl[mode], 0, length)
   }
-
-  return { draw }
 }
 
-export { initBuffer }
+export { Buffer }

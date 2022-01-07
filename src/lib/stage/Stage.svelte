@@ -9,7 +9,7 @@
 
 <script>
   import { onMount } from 'svelte'
-  import { planeMesh } from './planeMesh'
+  import { Plane } from './Plane'
   import { getContext } from 'svelte'
   
 	let container
@@ -44,23 +44,23 @@
     setViewport()
     let frame = requestAnimationFrame(loop)
     
-    plane = planeMesh(gl, colors)
+    plane = new Plane(gl, colors)
 
-		function loop() {
-			frame = requestAnimationFrame(loop)
-      
+		function loop(timeStamp) {
       if(width !== container.clientWidth || height !== container.clientHeight) {
         setSize()
       }
       setViewport()
 
-      gl.clearColor(colors.primary[0], colors.primary[1], colors.primary[2], colors.primary[3])
+      gl.clearColor(...colors.primary)
       gl.disable(gl.DEPTH_TEST)
       gl.clear(gl.COLOR_BUFFER_BIT)
 
       if(plane) {
-        plane.render(gl)
+        plane.render(timeStamp)
       }
+
+      frame = requestAnimationFrame(loop)
 		}
 
 		return () => {
