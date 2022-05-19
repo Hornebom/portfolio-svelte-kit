@@ -6,7 +6,9 @@ $media-medium: 1000px;
 $media-large: 1200px;
 $media-xlarge: 1400px;
 
-$max-width-large: $media-large;
+$max-width-xlarge: $media-large;
+$max-width-large: $media-medium;
+$max-width-medium: $media-small;
 
 $font-base: 'Geomanist Regular';
 $font-bold: 'Geomanist Bold';

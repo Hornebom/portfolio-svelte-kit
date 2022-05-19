@@ -1,9 +1,12 @@
 @import '../../styles/variables.scss';
 
+.inner > * + * {
+  margin-top: $space;
+}
+
 .cols {
   display: grid;
   gap: $space;
-  margin-top: $space;
 
   @media screen and (min-width: $media-small) {
     gap: $space * 2;

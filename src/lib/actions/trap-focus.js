@@ -20,7 +20,6 @@ function trapFocus(node, { active, onEscape = () => {}  }) {
   return {
     update({ active }) {
       setActiveState(active)
-
     }
   }
 }

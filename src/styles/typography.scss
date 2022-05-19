@@ -13,11 +13,28 @@ body {
 }
 
 // ============================= titles
+.gl-h1,
 .gl-h2 {
   font-family: $font-bold;
+  font-weight: normal;
+}
+
+.gl-h1 {
+  font-size: 3.5rem;
+  line-height: 1em;
+
+  @media screen and (min-width: $media-small) {
+    font-size: 5rem;
+  }
+  
+  @media screen and (min-width: $media-medium) {
+    font-size: 7rem;
+  }
+}
+
+.gl-h2 {
   font-size: 2.5rem;
   line-height: 1.1em;
-  font-weight: normal;
 
   @media screen and (min-width: $media-small) {
     font-size: 3rem;
