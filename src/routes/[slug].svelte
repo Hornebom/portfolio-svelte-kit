@@ -1,22 +1,8 @@
 <script context="module">
-	import query from './slug.query.js'
-	import datoRequest from '$lib/utils/dato-request.js'
-	
-	export const prerender = true;
-	
-	export async function load({ page, fetch }) {
-    const { slug } = page.params
-		const token = import.meta.env.VITE_DATO_API_TOKEN
-		const data = await datoRequest({ 
-			query, variables: { slug }, fetch, token 
-    })
-		
-		if(!data.page) {
-			return
-		}
+	import loadData from '../lib/utils/loadData.js'
+	export const prerender = true
 
-		return { props: { data: data.page } }
-	}
+	export const load = async({ fetch, page }) => loadData(fetch, `data/${page.params.slug}.json`)
 </script>
 
 <script>
@@ -25,15 +11,15 @@
 	import Sections from '$lib/sections/Sections.svelte'
 
 	export let data
-
-	$: seoProps = {seo: data.seoMeta, slug: $page.params.slug}
+	
+	$: ({ seoMeta, sections } = data)
+	$: seoProps = {seo: seoMeta, slug: $page.params.slug}
 </script>
-
 
 {#key $page.path}
 	<SeoHead {...seoProps} />
 
-	{#if data.sections}
-		<Sections sections={data.sections} />
+	{#if sections}
+		<Sections sections={sections} />
 	{/if}
 {/key}
