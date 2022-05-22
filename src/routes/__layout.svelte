@@ -13,6 +13,7 @@
 	import '../app.scss'
 	
 	export let data
+	$: ({ navigation, socials } = data)
 
 	const { setRoot } = themeHandler()
 	onMount(() => {
@@ -21,8 +22,8 @@
 </script>
 
 <Stage />
-<Header pages={data.navigation.links} socials={data.socials} />
+<Header pages={navigation.links} socials={socials} />
 <main class="gl-main gl-sections">
 	<slot></slot>
 </main>
-<Footer pages="{data.navigation.links}" />
+<Footer pages="{navigation.links}" />

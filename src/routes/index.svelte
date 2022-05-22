@@ -11,11 +11,12 @@
 	
 	export let data
 	
-	$: seoProps = {seo: data.seoMeta, slug: $page.params.slug}
+	$: ({ seoMeta, sections } = data)
+	$: seoProps = {seo: seoMeta, slug: $page.params.slug}
 </script>
 
 <SeoHead {...seoProps} />
 
-{#if data.sections}
-	<Sections sections={data.sections} />
+{#if sections}
+	<Sections sections={sections} />
 {/if}
