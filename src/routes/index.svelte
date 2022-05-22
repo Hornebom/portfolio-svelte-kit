@@ -1,26 +1,21 @@
 <script context="module">
-	import query from './index.query.js'
-	import datoRequest from '$lib/utils/dato-request.js'
+	import loadData from '../lib/utils/loadData.js'
 
-	export const prerender = true;
-	
-	export async function load({ fetch, page }) {
-		const { slug } = page.params
-		const token = import.meta.env.VITE_DATO_API_TOKEN
-		const { home } = await datoRequest({ query, fetch, token })
-		return { props: { page: { ...home, slug }} }
-	}
+	export const load = async({ fetch }) => loadData(fetch, 'data/home.json')
 </script>
 
 <script>
+	import { page } from '$app/stores'
 	import SeoHead from '$lib/seo-head/SeoHead.svelte'
 	import Sections from '$lib/sections/Sections.svelte'
 	
-	export let page
+	export let data
+	
+	$: seoProps = {seo: data.seoMeta, slug: $page.params.slug}
 </script>
 
-<SeoHead seo={page.seoMeta} slug={page.slug} />
+<SeoHead {...seoProps} />
 
-{#if page.sections}
-	<Sections sections={page.sections} />
+{#if data.sections}
+	<Sections sections={data.sections} />
 {/if}

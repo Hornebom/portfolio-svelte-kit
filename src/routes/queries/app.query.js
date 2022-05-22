@@ -1,7 +1,7 @@
 import socials from '$lib/socials/socials.fragment'
 
 const query = `
-  query Navigation {
+  query App {
     navigation {
       links {
         slug
