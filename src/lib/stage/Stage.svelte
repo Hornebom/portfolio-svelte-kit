@@ -11,6 +11,7 @@
   import { onMount } from 'svelte'
   import { Plane } from './Plane'
   import { getContext } from 'svelte'
+  import VerticesWorker from './vertices-worker?worker'
   
 	let container
 	let canvas
@@ -44,7 +45,11 @@
     setViewport()
     let frame = requestAnimationFrame(loop)
     
-    plane = new Plane(gl, colors)
+    const worker = new VerticesWorker()
+    worker.onmessage = ({ data }) => {
+      plane = new Plane({ gl, colors, vertices: data })
+      worker.terminate()
+    }
 
 		function loop(timeStamp) {
       if(width !== container.clientWidth || height !== container.clientHeight) {

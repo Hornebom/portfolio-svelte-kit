@@ -2,39 +2,8 @@ import { Buffer } from './Buffer'
 import { Program } from './Program'
 import { vertexShaderSource, fragmentShaderSource } from './shaderSource'
 
-function Plane(gl, colors) {
-
-  const size = 1
-  const segments = 30
-  const unit = (size * 2) / segments
-  const vertices = []
-  let x_start, x_end, y_start, y_end
-
-  for(let i = 0; i < segments; i++) {
-    x_start = -size + unit * i
-    x_end = x_start + unit
-    
-    for(let j = 0; j < segments; j++) {
-      y_start = size - unit * j
-      y_end = y_start - unit
-
-      vertices.push(
-        // Triangle 1
-        x_start, y_start, 
-        x_end, y_start, 
-        x_end, y_end,
-
-        // Triangle 2
-        x_start, y_start, 
-        x_end, y_end, 
-        x_start, y_end, 
-      )
-    }
-    
-  }
-
+function Plane({ gl, colors, vertices }) {
   const { program } = new Program(gl, vertexShaderSource, fragmentShaderSource)
-
   const buffer = new Buffer({
     gl, 
     program,
