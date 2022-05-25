@@ -2,39 +2,8 @@ import { Buffer } from './Buffer'
 import { Program } from './Program'
 import { vertexShaderSource, fragmentShaderSource } from './shaderSource'
 
-function Plane(gl, colors) {
-
-  const size = 1
-  const segments = 30
-  const unit = (size * 2) / segments
-  const vertices = []
-  let x_start, x_end, y_start, y_end
-
-  for(let i = 0; i < segments; i++) {
-    x_start = -size + unit * i
-    x_end = x_start + unit
-    
-    for(let j = 0; j < segments; j++) {
-      y_start = size - unit * j
-      y_end = y_start - unit
-
-      vertices.push(
-        // Triangle 1
-        x_start, y_start, 
-        x_end, y_start, 
-        x_end, y_end,
-
-        // Triangle 2
-        x_start, y_start, 
-        x_end, y_end, 
-        x_start, y_end, 
-      )
-    }
-    
-  }
-
+function Plane({ gl, colors, vertices }) {
   const { program } = new Program(gl, vertexShaderSource, fragmentShaderSource)
-
   const buffer = new Buffer({
     gl, 
     program,
@@ -43,11 +12,13 @@ function Plane(gl, colors) {
     name: 'a_vertex', 
     mode: 'TRIANGLES' 
   })
-
+  
+  let opacity = 0
   const colorPrimaryLocation = gl.getUniformLocation(program, "u_color_primary")
   const colorSecondaryLocation = gl.getUniformLocation(program, "u_color_secondary")
   const deltaLocation = gl.getUniformLocation(program, "u_delta")
   const offsetLocation = gl.getUniformLocation(program, "u_offset")
+  const opacityLocation = gl.getUniformLocation(program, "u_opacity")
 
   this.render = (delta) => {
     gl.useProgram(program)
@@ -57,8 +28,10 @@ function Plane(gl, colors) {
 
     gl.uniform1f(deltaLocation, delta * .0003)
     gl.uniform1f(offsetLocation, window.pageYOffset * -.0005)
+    gl.uniform1f(opacityLocation, opacity)
 
     buffer.draw()
+    if(opacity <= 1) opacity += .01
   }
 
   this.updateUniformColors = (newColors) => {
