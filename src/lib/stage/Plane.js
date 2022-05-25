@@ -12,11 +12,13 @@ function Plane({ gl, colors, vertices }) {
     name: 'a_vertex', 
     mode: 'TRIANGLES' 
   })
-
+  
+  let opacity = 0
   const colorPrimaryLocation = gl.getUniformLocation(program, "u_color_primary")
   const colorSecondaryLocation = gl.getUniformLocation(program, "u_color_secondary")
   const deltaLocation = gl.getUniformLocation(program, "u_delta")
   const offsetLocation = gl.getUniformLocation(program, "u_offset")
+  const opacityLocation = gl.getUniformLocation(program, "u_opacity")
 
   this.render = (delta) => {
     gl.useProgram(program)
@@ -26,8 +28,10 @@ function Plane({ gl, colors, vertices }) {
 
     gl.uniform1f(deltaLocation, delta * .0003)
     gl.uniform1f(offsetLocation, window.pageYOffset * -.0005)
+    gl.uniform1f(opacityLocation, opacity)
 
     buffer.draw()
+    if(opacity <= 1) opacity += .01
   }
 
   this.updateUniformColors = (newColors) => {

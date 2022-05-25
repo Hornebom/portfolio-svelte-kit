@@ -4,7 +4,6 @@
     width={width}
     height={height}
     class="canvas"
-    class:visible="{plane}"
   ></canvas>
 </div>
 

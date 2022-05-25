@@ -9,10 +9,4 @@
   top: 0;
   left: 0;
   width: 100%;
-
-  transition: opacity 2s linear;
-
-  &:not(.visible) {
-    opacity: 0;
-  }
 }
